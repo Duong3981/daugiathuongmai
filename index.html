@@ -247,7 +247,6 @@
             margin-bottom: 2rem;
         }
         
-        /* UPDATED ARGUMENT SECTION STYLES */
         .argument-card {
             border-radius: 0.75rem;
             overflow: hidden;
@@ -261,15 +260,15 @@
             font-size: 1.25rem; 
             color: white; 
         }
-        .plaintiff .argument-header { background-color: #f97316; } /* Solid Orange */
-        .defendant .argument-header { background-color: #10b981; } /* Solid Green */
+        .plaintiff .argument-header { background-color: #f97316; } 
+        .defendant .argument-header { background-color: #10b981; } 
         .argument-list { 
             padding: 1.5rem; 
             display: flex; 
             flex-direction: column; 
             gap: 1.25rem; 
             flex-grow: 1;
-            background-color: #f8fafc; /* Light grey background for content */
+            background-color: #f8fafc;
             color: var(--color-text-dark);
         }
         .argument-item { display: flex; gap: 1rem; align-items: flex-start; }
@@ -277,9 +276,8 @@
             font-size: 1.25rem; 
             line-height: 1.6;
         }
-        .plaintiff .emoji-icon { color: #ef4444; } /* Red for X */
-        .defendant .emoji-icon { color: var(--color-primary); } /* Green for Check */
-        /* END OF UPDATED STYLES */
+        .plaintiff .emoji-icon { color: #ef4444; }
+        .defendant .emoji-icon { color: var(--color-primary); }
 
         .analysis-point {
             background-color: #fff;
@@ -397,10 +395,6 @@
             font-size: 4rem;
         }
         
-        /* ==============================================
-        MODAL STYLES
-        ==============================================
-        */
         .modal-overlay {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             background-color: rgba(17, 24, 39, 0.6); backdrop-filter: blur(8px);
@@ -433,28 +427,27 @@
         .modal-body li { margin-bottom: 0.75rem; }
         .modal-feature-title { font-size: 1.75rem; font-weight: 700; color: var(--color-bg-dark); margin-bottom: 1rem; }
         
-        /* ==============================================
-        ANIMATION STYLES
-        ==============================================
-        */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
+        /* REVISED ANIMATION STYLES */
         .animate-on-scroll {
             opacity: 0;
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
+        .fade-in-up { transform: translateY(30px); }
+        .fade-in-down { transform: translateY(-30px); }
+        .fade-in-left { transform: translateX(-30px); }
+        .fade-in-right { transform: translateX(30px); }
+        .zoom-in { transform: scale(0.95); }
         
         .is-visible {
-            animation: fadeIn 0.8s ease-out forwards;
+            opacity: 1;
+            transform: none;
         }
         
     </style>
 </head>
 <body>
 
-    <header class="hero-section animate-on-scroll">
+    <header class="hero-section animate-on-scroll fade-in-down">
         <div>
             <h1 class="header-title">ĐẤU GIÁ HÀNG HÓA</h1>
             <p class="header-subtitle">Tranh chấp Hợp đồng đấu giá hàng hóa</p>
@@ -468,13 +461,14 @@
             <a href="#arguments">Lập Luận</a>
             <a href="#verdict">Phán Quyết</a>
             <a href="#analysis">Phân Tích</a>
-            <a href="#commentary">Bình Luận</a>
+            <a href="#commentary">Nhận xét</a>
+            <a href="#evaluation">Đánh Giá</a>
             <a href="#recommendations">Khuyến Nghị</a>
         </div>
     </nav>
     
     <main class="main-container">
-        <section id="legal-foundation" class="section animate-on-scroll">
+        <section id="legal-foundation" class="section animate-on-scroll fade-in-up">
             <h2 class="section-heading">
                 <span class="emoji-icon">⚖️</span>
                 Cơ Sở Pháp Lý
@@ -534,27 +528,27 @@
                     <h3 class="subsection-heading">3. Sáu Đặc Điểm Nhận Diện</h3>
                     <p class="text-center text-gray-500 mb-6 -mt-4">Nhấp vào từng đặc điểm để xem chi tiết.</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <div class="feature-card-clickable" data-modal-target="#modal-feature-1" role="button" tabindex="0">
+                        <div class="feature-card-clickable animate-on-scroll zoom-in" data-modal-target="#modal-feature-1" role="button" tabindex="0">
                             <div class="feature-icon-clickable">🔨</div>
                             <h5 class="font-bold text-lg">Phương thức đặc biệt</h5>
                         </div>
-                        <div class="feature-card-clickable" data-modal-target="#modal-feature-2" role="button" tabindex="0">
+                        <div class="feature-card-clickable animate-on-scroll zoom-in" style="transition-delay: 0.1s" data-modal-target="#modal-feature-2" role="button" tabindex="0">
                             <div class="feature-icon-clickable">📈</div>
                             <h5 class="font-bold text-lg">Tìm giá cao nhất</h5>
                         </div>
-                        <div class="feature-card-clickable" data-modal-target="#modal-feature-3" role="button" tabindex="0">
+                        <div class="feature-card-clickable animate-on-scroll zoom-in" style="transition-delay: 0.2s" data-modal-target="#modal-feature-3" role="button" tabindex="0">
                             <div class="feature-icon-clickable">✅</div>
                             <h5 class="font-bold text-lg">Hàng hóa hợp pháp</h5>
                         </div>
-                        <div class="feature-card-clickable" data-modal-target="#modal-feature-4" role="button" tabindex="0">
+                        <div class="feature-card-clickable animate-on-scroll zoom-in" style="transition-delay: 0.3s" data-modal-target="#modal-feature-4" role="button" tabindex="0">
                             <div class="feature-icon-clickable">🕴️</div>
                             <h5 class="font-bold text-lg">Chủ thể là thương nhân</h5>
                         </div>
-                        <div class="feature-card-clickable" data-modal-target="#modal-feature-5" role="button" tabindex="0">
+                        <div class="feature-card-clickable animate-on-scroll zoom-in" style="transition-delay: 0.4s" data-modal-target="#modal-feature-5" role="button" tabindex="0">
                             <div class="feature-icon-clickable">📜</div>
                             <h5 class="font-bold text-lg">Hình thức pháp lý</h5>
                         </div>
-                        <div class="feature-card-clickable" data-modal-target="#modal-feature-6" role="button" tabindex="0">
+                        <div class="feature-card-clickable animate-on-scroll zoom-in" style="transition-delay: 0.5s" data-modal-target="#modal-feature-6" role="button" tabindex="0">
                             <div class="feature-icon-clickable">🌍</div>
                             <h5 class="font-bold text-lg">Luật điều chỉnh kép</h5>
                         </div>
@@ -599,27 +593,27 @@
         </section>
         
         <section id="case-timeline" class="section animate-on-scroll">
-            <h2 class="section-heading">
+            <h2 class="section-heading fade-in-up">
                 <span class="emoji-icon">🗓️</span>
                 Diễn Biến Vụ Án
             </h2>
             <div class="timeline-container">
-                <div class="timeline-item"><div class="timeline-icon">📝</div><div class="timeline-content"><p class="timeline-date">12/04/2017</p><h3 class="timeline-title">Ký Hợp đồng Bán đấu giá</h3><p class="text-gray-600">Vinamoon và Cty Châu Phi ký HĐ để đấu giá lô vàng 5.997,16g.</p></div></div>
-                <div class="timeline-item"><div class="timeline-icon">🏛️</div><div class="timeline-content"><p class="timeline-date">30/05/2017</p><h3 class="timeline-title">Tổ chức đấu giá</h3><p class="text-gray-600">Cty Trung Thực trúng đấu giá với giá 9,05 tỷ VNĐ.</p></div></div>
-                <div class="timeline-item"><div class="timeline-icon">🤝</div><div class="timeline-content"><p class="timeline-date">28/06/2017</p><h3 class="timeline-title">Ký Biên bản thương thảo</h3><p class="text-gray-600">Vinamoon và Trung Thực ký biên bản gia hạn thời gian thanh toán.</p></div></div>
-                <div class="timeline-item"><div class="timeline-icon">📜</div><div class="timeline-content"><p class="timeline-date">03/08/2017</p><h3 class="timeline-title">Ký HĐ Mua bán & Công chứng</h3><p class="text-gray-600">Các bên ký HĐ Mua bán tài sản bán đấu giá, được công chứng hợp pháp.</p></div></div>
-                <div class="timeline-item"><div class="timeline-icon">🧾</div><div class="timeline-content"><p class="timeline-date">21/12/2017</p><h3 class="timeline-title">Hoàn tất Giao dịch</h3><p class="text-gray-600">Cty Trung Thực thanh toán đủ tiền. Vinamoon nhận tiền, xuất hóa đơn và bàn giao tài sản.</p></div></div>
-                <div class="timeline-item"><div class="timeline-icon">⚠️</div><div class="timeline-content"><p class="timeline-date">24/01/2022</p><h3 class="timeline-title">Khởi kiện</h3><p class="text-gray-600">Sau gần 5 năm, Vinamoon khởi kiện, cho rằng quy trình có nhiều vi phạm.</p></div></div>
+                <div class="timeline-item animate-on-scroll fade-in-up" ><div class="timeline-icon">📝</div><div class="timeline-content"><p class="timeline-date">12/04/2017</p><h3 class="timeline-title">Ký Hợp đồng Bán đấu giá</h3><p class="text-gray-600">Vinamoon và Cty Châu Phi ký HĐ để đấu giá lô vàng 5.997,16g.</p></div></div>
+                <div class="timeline-item animate-on-scroll fade-in-up" style="transition-delay: 0.1s"><div class="timeline-icon">🏛️</div><div class="timeline-content"><p class="timeline-date">30/05/2017</p><h3 class="timeline-title">Tổ chức đấu giá</h3><p class="text-gray-600">Cty Trung Thực trúng đấu giá với giá 9,05 tỷ VNĐ.</p></div></div>
+                <div class="timeline-item animate-on-scroll fade-in-up" style="transition-delay: 0.2s"><div class="timeline-icon">🤝</div><div class="timeline-content"><p class="timeline-date">28/06/2017</p><h3 class="timeline-title">Ký Biên bản thương thảo</h3><p class="text-gray-600">Vinamoon và Trung Thực ký biên bản gia hạn thời gian thanh toán.</p></div></div>
+                <div class="timeline-item animate-on-scroll fade-in-up" style="transition-delay: 0.3s"><div class="timeline-icon">📜</div><div class="timeline-content"><p class="timeline-date">03/08/2017</p><h3 class="timeline-title">Ký HĐ Mua bán & Công chứng</h3><p class="text-gray-600">Các bên ký HĐ Mua bán tài sản bán đấu giá, được công chứng hợp pháp.</p></div></div>
+                <div class="timeline-item animate-on-scroll fade-in-up" style="transition-delay: 0.4s"><div class="timeline-icon">🧾</div><div class="timeline-content"><p class="timeline-date">21/12/2017</p><h3 class="timeline-title">Hoàn tất Giao dịch</h3><p class="text-gray-600">Cty Trung Thực thanh toán đủ tiền. Vinamoon nhận tiền, xuất hóa đơn và bàn giao tài sản.</p></div></div>
+                <div class="timeline-item animate-on-scroll fade-in-up" style="transition-delay: 0.5s"><div class="timeline-icon">⚠️</div><div class="timeline-content"><p class="timeline-date">24/01/2022</p><h3 class="timeline-title">Khởi kiện</h3><p class="text-gray-600">Sau gần 5 năm, Vinamoon khởi kiện, cho rằng quy trình có nhiều vi phạm.</p></div></div>
             </div>
         </section>
 
         <section id="arguments" class="section animate-on-scroll">
-            <h2 class="section-heading">
+            <h2 class="section-heading fade-in-up">
                 <span class="emoji-icon">⚔️</span>
                 Lập Luận Của Các Bên
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="argument-card plaintiff">
+                <div class="argument-card plaintiff animate-on-scroll fade-in-left">
                     <div class="argument-header">Phía Nguyên Đơn (Công ty Vinamoon)</div>
                     <div class="argument-list">
                         <div class="argument-item"><span class="emoji-icon">❌</span><span><strong>Thông báo không đủ ngày:</strong> Thời gian đăng báo không đảm bảo đủ 7 ngày làm việc theo luật định, ảnh hưởng tính công khai.</span></div>
@@ -629,7 +623,7 @@
                         <div class="argument-item"><span class="emoji-icon">❌</span><span><strong>Thanh toán chậm:</strong> Bên trúng đấu giá đã thanh toán chậm 145 ngày so với quy chế ban đầu, là vi phạm nghiêm trọng.</span></div>
                     </div>
                 </div>
-                 <div class="argument-card defendant">
+                 <div class="argument-card defendant animate-on-scroll fade-in-right">
                     <div class="argument-header">Phía Bị Đơn & Liên Quan</div>
                      <div class="argument-list">
                         <div class="argument-item"><span class="emoji-icon">✔️</span><span><strong>Vinamoon đã biết và chấp thuận:</strong> Toàn bộ quy trình, kể cả việc dời ngày, đều có sự tham gia và không có sự phản đối nào từ Vinamoon.</span></div>
@@ -642,7 +636,7 @@
             </div>
         </section>
 
-        <section id="verdict" class="section animate-on-scroll">
+        <section id="verdict" class="section animate-on-scroll fade-in-zoom">
              <h2 class="section-heading">
                  <span class="emoji-icon">🏛️</span>
                 Phán Quyết của Tòa Án
@@ -662,12 +656,12 @@
         </section>
 
         <section id="analysis" class="section animate-on-scroll">
-            <h2 class="section-heading">
+            <h2 class="section-heading fade-in-up">
                 <span class="emoji-icon">🔍</span>
                 Phân Tích Nhận Định Của Tòa
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="analysis-point">
+                <div class="analysis-point animate-on-scroll fade-in-left">
                     <h3 class="analysis-title">Vấn đề 1: Vi phạm thủ tục có nghiêm trọng không?</h3>
                     <div class="analysis-summary">
                         <div class="analysis-box">
@@ -681,7 +675,7 @@
                     </div>
                     <button data-modal-target="#modal-analysis-1" class="read-more-btn">Phân tích sâu về vi phạm thủ tục</button>
                 </div>
-                <div class="analysis-point">
+                <div class="analysis-point animate-on-scroll fade-in-right" style="transition-delay: 0.1s">
                     <h3 class="analysis-title">Vấn đề 2: Tính ngay tình & thời hạn thanh toán</h3>
                     <div class="analysis-summary">
                         <div class="analysis-box">
@@ -698,10 +692,10 @@
             </div>
         </section>
 
-        <section id="commentary" class="section animate-on-scroll">
+        <section id="commentary" class="section animate-on-scroll fade-in-up">
             <h2 class="section-heading">
                 <span class="emoji-icon">💬</span>
-                Bình Luận Của Nhóm Nghiên Cứu
+                Nhận xét
             </h2>
             <div class="commentary-box">
                 <div class="commentary-grid">
@@ -724,13 +718,42 @@
             </div>
         </section>
         
-        <section id="recommendations" class="section animate-on-scroll">
+        <section id="evaluation" class="section animate-on-scroll fade-in-up">
             <h2 class="section-heading">
+                <span class="emoji-icon">📊</span>
+                Một số nhận xét của nhóm
+            </h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="card card-padded space-y-4">
+                    <h3 class="subsection-heading">⚖️ Phán Quyết Của Tòa Án</h3>
+                    <p class="text-center">Tòa án đã bác bỏ toàn bộ yêu cầu của nguyên đơn, giữ nguyên hiệu lực của các hợp đồng. Lập luận chính dựa trên các yếu tố:</p>
+                    <ul class="list-disc list-inside space-y-2 text-left">
+                        <li>Vi phạm thủ tục không bị coi là "nghiêm trọng".</li>
+                        <li>Mục đích cuối cùng của hợp đồng (bán tài sản, nhận tiền) đã đạt được.</li>
+                        <li>Nguyên đơn đã có hành vi chấp thuận (tham gia đấu giá, ký hợp đồng, nhận tiền).</li>
+                        <li>Bảo vệ quyền lợi của bên mua được cho là "ngay tình".</li>
+                    </ul>
+                </div>
+                <div class="space-y-8">
+                     <div class="card card-padded">
+                        <h4 class="font-bold text-lg text-center mb-2">🤔 Vi phạm thủ tục có nghiêm trọng?</h4>
+                        <p>Không. Vì nguyên đơn đã biết nhưng không phản đối, mục đích thông báo vẫn đạt được (có người tham gia và cạnh tranh), và quan trọng nhất là <strong>không có thiệt hại thực tế</strong> nào được chứng minh.</p>
+                    </div>
+                    <div class="card card-padded">
+                        <h4 class="font-bold text-lg text-center mb-2">❓ Vấn đề "ngay tình"</h4>
+                        <p>Lập luận của Tòa về tính "ngay tình" của bên mua chưa thuyết phục. Bên mua đã biết các sai sót nhưng vẫn tiếp tục giao dịch và còn hưởng lợi. Đây là một điểm yếu trong lập luận của bản án, có thể tạo ra tiền lệ không tốt.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="recommendations" class="section animate-on-scroll">
+            <h2 class="section-heading fade-in-up">
                 <span class="emoji-icon">💡</span>
                 Bài Học & Khuyến Nghị
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="recommendation-card">
+                <div class="recommendation-card animate-on-scroll fade-in-up" style="transition-delay: 0s;">
                     <h3 class="recommendation-title"><span class="emoji-icon">👤</span>Đối với Người có tài sản</h3>
                     <ul class="list-disc list-inside text-gray-700 space-y-2">
                         <li><strong>Chủ động giám sát:</strong> Luôn theo dõi chặt chẽ quy trình đấu giá.</li>
@@ -738,21 +761,21 @@
                          <li><strong>Quy định rõ trong hợp đồng:</strong> Nêu rõ vi phạm nào là "cơ bản" để làm điều kiện hủy hợp đồng.</li>
                     </ul>
                 </div>
-                 <div class="recommendation-card">
+                 <div class="recommendation-card animate-on-scroll fade-in-up" style="transition-delay: 0.1s;">
                     <h3 class="recommendation-title"><span class="emoji-icon">🏢</span>Đối với Tổ chức đấu giá</h3>
                     <ul class="list-disc list-inside text-gray-700 space-y-2">
                         <li><strong>Tuân thủ nghiêm ngặt:</strong> Coi việc tuân thủ luật định là nghĩa vụ cốt lõi.</li>
                         <li><strong>Lưu trữ hồ sơ đầy đủ:</strong> Mọi thay đổi phải được thông báo và lưu lại văn bản cẩn thận.</li>
                     </ul>
                 </div>
-                 <div class="recommendation-card">
+                 <div class="recommendation-card animate-on-scroll fade-in-up" style="transition-delay: 0.2s;">
                     <h3 class="recommendation-title"><span class="emoji-icon">👥</span>Đối với Người tham gia đấu giá</h3>
                     <ul class="list-disc list-inside text-gray-700 space-y-2">
                         <li><strong>Thẩm định thông tin:</strong> Kiểm tra kỹ quy chế, đối chiếu thông báo. Yêu cầu làm rõ nếu có mâu thuẫn.</li>
                         <li><strong>Cân nhắc rủi ro:</strong> Thận trọng khi tham gia một cuộc đấu giá có dấu hiệu sai phạm thủ tục.</li>
                     </ul>
                 </div>
-                 <div class="recommendation-card">
+                 <div class="recommendation-card animate-on-scroll fade-in-up" style="transition-delay: 0.3s;">
                     <h3 class="recommendation-title"><span class="emoji-icon">⚖️</span>Đối với Tòa án</h3>
                     <ul class="list-disc list-inside text-gray-700 space-y-2">
                           <li><strong>Đánh giá toàn diện:</strong> Xem xét đúng mức độ nghiêm trọng của vi phạm, không chỉ dựa vào thiệt hại vật chất.</li>
@@ -764,7 +787,6 @@
     </main>
 
     <div id="modal-overlay" class="modal-overlay"></div>
-
     <div id="modal-analysis-1" class="modal"><div class="modal-header"><h3 class="modal-title">Phân tích: Vi phạm thủ tục có nghiêm trọng không?</h3><button data-close-button class="modal-close-btn" aria-label="Đóng">&times;</button></div><div class="modal-body"><p>Để một hợp đồng bị hủy bỏ, pháp luật đòi hỏi vi phạm phải ở mức <strong>"nghiêm trọng"</strong> hoặc <strong>"cơ bản"</strong>, tức là ảnh hưởng trực tiếp đến quyền lợi các bên hoặc làm sai lệch kết quả giao dịch. Tòa án đã xác định các vi phạm thủ tục trong vụ án này là không nghiêm trọng, vì:</p><ol><li><strong>Mục đích của Nguyên đơn đã đạt được:</strong><ul><li>Bán được tài sản với giá cao hơn giá khởi điểm.</li><li>Nhận đủ toàn bộ số tiền thanh toán.</li><li>Chủ động ký các văn bản bàn giao, thanh lý hợp đồng.</li></ul><p>Quyền lợi cốt lõi của Vinamoon không bị xâm phạm.</p></li><li><strong>Sự chấp thuận của Nguyên đơn:</strong><p>Bản án ghi rõ Vinamoon và những người tham gia khác <strong>không có ý kiến phản đối</strong> khi được thông báo về việc dời ngày đấu giá. Sự im lặng và tiếp tục tham gia (cử đại diện, ký hợp đồng mua bán) được xem như sự chấp nhận, hay "từ bỏ quyền khiếu nại" về các sai sót thủ tục đó.</p></li><li><strong>Không có thiệt hại thực tế:</strong><p>Tòa án khẳng định: "Nguyên đơn xác nhận cho đến nay Nguyên đơn không có tài liệu, chứng cứ chứng minh thiệt hại của Nguyên đơn...". Một vi phạm không gây thiệt hại vật chất thì khó có thể bị coi là "nghiêm trọng".</p></li></ol><p class="p-4 bg-teal-50 border-l-4 border-teal-400 text-teal-800 rounded-r-lg"><strong>Kết luận của Tòa:</strong> Các sai sót chỉ là vi phạm về hình thức, không làm thay đổi bản chất giao dịch, không làm sai lệch kết quả và không gây thiệt hại cho Nguyên đơn. Do đó, không đủ cơ sở để hủy hợp đồng.</p></div></div>
     <div id="modal-analysis-2" class="modal"><div class="modal-header"><h3 class="modal-title">Phân tích: Vấn đề thanh toán & Tính ngay tình</h3><button data-close-button class="modal-close-btn" aria-label="Đóng">&times;</button></div><div class="modal-body"><h4>1. Về việc thanh toán chậm</h4><p><strong>Lập luận của Nguyên đơn:</strong> Công ty Trung Thực thanh toán chậm 145 ngày so với quy chế ban đầu.</p><p><strong>Nhận định của Tòa án:</strong> Lập luận này không hợp lệ vì các bên đã có một thỏa thuận mới thay thế:</p><ul><li>Ngày 28/06/2017, chính Công ty Vinamoon và Công ty Trung Thực đã ký <strong>"Biên bản thương thảo hợp đồng"</strong>.</li><li>Biên bản này thống nhất gia hạn thời hạn thanh toán thành <strong>100 ngày làm việc</strong> kể từ ngày ký hợp đồng công chứng.</li><li>Công ty Trung Thực đã thanh toán trong thời hạn mới này.</li><li>Hành vi nhận đủ tiền, xuất hóa đơn và bàn giao tài sản của Vinamoon đã khẳng định sự đồng thuận của họ với thỏa thuận mới.</li></ul><hr class="my-6"><h4>2. Về tính "ngay tình" của bên mua</h4><p><strong>Nhận định của Tòa án:</strong> Tòa án viện dẫn Điều 133 BLDS 2015 và Điều 7 Luật đấu giá tài sản 2016 để bảo vệ Công ty Trung Thực với tư cách là "người thứ ba ngay tình". Tòa cho rằng họ đã tham gia đúng quy trình, thanh toán đầy đủ và cần được bảo vệ.</p><p><strong>Bình luận (Điểm bất đồng của nhóm nghiên cứu):</strong> Việc áp dụng này là <strong>khiên cưỡng</strong>. "Ngay tình" có nghĩa là không biết và không buộc phải biết về sai phạm. Tuy nhiên, Công ty Trung Thực:</p><ul><li>Biết về sự mâu thuẫn tiền đặt trước (đăng báo 1.5% nhưng nộp 2%).</li><li>Biết về việc thay đổi ngày đấu giá không công khai.</li><li>Chủ động thương lượng để thay đổi thời hạn thanh toán.</li></ul><p class="p-4 bg-red-50 border-l-4 border-red-400 text-red-800 rounded-r-lg">Những hành vi trên cho thấy Công ty Trung Thực đã biết và chấp nhận các sai sót để hưởng lợi. Do đó, họ không hoàn toàn "ngay tình". Việc Tòa án bảo vệ họ dưới danh nghĩa này có thể tạo ra tiền lệ không tốt.</p></div></div>
     
@@ -801,10 +823,12 @@
                     entries.forEach((entry) => {
                         if (entry.isIntersecting) {
                             entry.target.classList.add('is-visible');
-                            observer.unobserve(entry.target);
+                        } else {
+                            // FIXED: Remove the class when out of view to re-trigger animation
+                            entry.target.classList.remove('is-visible');
                         }
                     });
-                }, { threshold: 0.05 });
+                }, { threshold: 0.1 }); // Trigger when 10% is visible
 
                 document.querySelectorAll('.animate-on-scroll').forEach((el) => {
                     observer.observe(el);
