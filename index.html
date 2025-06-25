@@ -41,10 +41,6 @@
         */
         .hero-section {
             background-color: var(--color-bg-dark);
-            /*
-              Cập nhật: Thay thế URL hình ảnh trước đó bằng một URL mới, đáng tin cậy hơn từ Pexels
-              để khắc phục triệt để vấn đề tải ảnh.
-            */
             background-image:
                 linear-gradient(135deg, rgba(6, 78, 59, 0.85) 0%, rgba(4, 120, 87, 0.9) 100%),
                 url('https://images.pexels.com/photos/386318/pexels-photo-386318.jpeg');
@@ -470,6 +466,32 @@
             border: 1px solid var(--color-border);
             min-height: 100px;
         }
+
+        /* Tab Styles */
+        .tab-btn {
+            padding: 1rem 1.5rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-weight: 600;
+            color: #6b7280; /* gray-500 */
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+        .tab-btn:hover {
+            color: var(--color-primary);
+        }
+        .tab-btn.active {
+            color: var(--color-primary);
+            border-bottom-color: var(--color-primary);
+        }
+        .tab-content {
+            display: none;
+            line-height: 1.8;
+        }
+        .tab-content.active {
+            display: block;
+        }
         
         /* Loading Spinner */
         .loader {
@@ -524,6 +546,7 @@
     <nav class="sticky-nav">
         <div class="nav-links">
             <a href="#legal-foundation">Cơ Sở Pháp Lý</a>
+            <a href="#case-info">Thông Tin Vụ Án</a>
             <a href="#case-timeline">Diễn Biến</a>
             <a href="#arguments">Lập Luận</a>
             <a href="#verdict">Phán Quyết</a>
@@ -657,6 +680,19 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- New Section: Case Information -->
+        <section id="case-info" class="section animate-on-scroll fade-in-up">
+            <h2 class="section-heading">
+                <span class="emoji-icon">📂</span>
+                Thông Tin Vụ Án
+            </h2>
+            <div class="text-center">
+                <button data-modal-target="#modal-case-info" class="w-full md:w-2/3 lg:w-1/2 text-lg font-bold p-4 rounded-lg text-white transition-all duration-300 shadow-lg hover:shadow-xl" style="background-image: linear-gradient(to right, var(--color-primary), var(--color-secondary));">
+                    Xem Chi Tiết Hồ Sơ Vụ Án
+                </button>
             </div>
         </section>
         
@@ -870,6 +906,52 @@
     <div id="modal-overlay" class="modal-overlay"></div>
 
     <!-- Modals -->
+    <div id="modal-case-info" class="modal">
+        <div class="modal-header">
+            <h3 class="modal-title">Hồ Sơ Vụ Án Chi Tiết</h3>
+            <button data-close-button class="modal-close-btn" aria-label="Đóng">&times;</button>
+        </div>
+        <div class="modal-body p-0">
+            <!-- Tab Navigation -->
+            <div class="border-b border-gray-200">
+                <nav class="flex -mb-px" aria-label="Tabs">
+                    <button class="tab-btn active" data-tab-target="#tab-content">Nội dung vụ án</button>
+                    <button class="tab-btn" data-tab-target="#tab-minutes">Biên bản thương thảo</button>
+                    <button class="tab-btn" data-tab-target="#tab-contract">Hợp đồng đấu giá</button>
+                </nav>
+            </div>
+            <!-- Tab Content -->
+            <div class="p-6">
+                <div id="tab-content" class="tab-content active">
+                    <h4 class="font-bold text-lg mb-4 text-gray-800">Tóm Tắt Nội Dung Vụ Án</h4>
+                    <p>Nguyên đơn là <strong>Công ty cổ phần Vàng bạc đá quý Vinamoon</strong> (viết tắt là Vinamoon) khởi kiện Bị đơn là <strong>Công ty TNHH Đấu giá Châu Phi</strong> (viết tắt là Cty Châu Phi) và Người có quyền lợi, nghĩa vụ liên quan là <strong>Công ty TNHH Vàng bạc đá quý Trung Thực</strong> (viết tắt là Cty Trung Thực).</p>
+                    <p>Vinamoon yêu cầu Tòa án tuyên bố Hợp đồng dịch vụ bán đấu giá tài sản và Hợp đồng mua bán tài sản bán đấu giá vô hiệu do cho rằng Cty Châu Phi đã vi phạm nghiêm trọng thủ tục đấu giá, bao gồm: không thông báo đủ thời gian, tự ý dời ngày đấu giá, thông tin về tiền đặt trước mâu thuẫn, và không đảm bảo thời gian xem tài sản. Ngoài ra, Vinamoon cũng cho rằng Cty Trung Thực đã vi phạm nghĩa vụ thanh toán.</p>
+                    <p>Tuy nhiên, phía Bị đơn và Người liên quan cho rằng toàn bộ quá trình có sự đồng thuận của Vinamoon, việc gia hạn thanh toán đã được thỏa thuận lại bằng văn bản, và giao dịch đã được hoàn tất trên thực tế. Tòa án đã bác bỏ yêu cầu của Vinamoon.</p>
+                </div>
+                <div id="tab-minutes" class="tab-content">
+                    <h4 class="font-bold text-lg mb-4 text-gray-800">Biên Bản Thương Thảo Hợp Đồng (28/06/2017)</h4>
+                    <p>Sau khi Cty Trung Thực trúng đấu giá, do chưa chuẩn bị đủ tài chính, hai bên đã cùng nhau lập "Biên bản thương thảo hợp đồng" để điều chỉnh lại thời hạn thanh toán.</p>
+                    <p><strong>Nội dung chính:</strong></p>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li><strong>Thỏa thuận mới về thời hạn thanh toán:</strong> Các bên đồng ý gia hạn thời gian thanh toán cho Cty Trung Thực thành <strong>100 ngày làm việc</strong>, kể từ ngày Hợp đồng mua bán tài sản được công chứng.</li>
+                        <li><strong>Tính pháp lý:</strong> Biên bản này được ký bởi đại diện có thẩm quyền của cả Vinamoon và Cty Trung Thực, thể hiện sự tự nguyện và ý chí chung của các bên trong việc sửa đổi thỏa thuận ban đầu. Đây là căn cứ quan trọng để Tòa án xác định Cty Trung Thực không vi phạm nghĩa vụ thanh toán.</li>
+                    </ul>
+                </div>
+                <div id="tab-contract" class="tab-content">
+                    <h4 class="font-bold text-lg mb-4 text-gray-800">Hợp Đồng Dịch Vụ Bán Đấu Giá Tài Sản (12/04/2017)</h4>
+                    <p>Hợp đồng được ký kết giữa Vinamoon (Bên A) và Cty Châu Phi (Bên B).</p>
+                    <p><strong>Đối tượng hợp đồng:</strong></p>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li>Tài sản: Lô hàng vàng SJC 999.9, khối lượng <strong>5.997,16g</strong>.</li>
+                        <li>Giá khởi điểm: <strong>8.888.888.888 VNĐ</strong>.</li>
+                        <li>Tiền đặt trước: <strong>2%</strong> giá khởi điểm.</li>
+                        <li>Bước giá: Tối thiểu <strong>10.000.000 VNĐ</strong>.</li>
+                    </ul>
+                     <p class="mt-4">Hợp đồng này là cơ sở pháp lý ban đầu để Cty Châu Phi tiến hành các thủ tục đấu giá lô tài sản cho Vinamoon.</p>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="modal-analysis-1" class="modal"><div class="modal-header"><h3 class="modal-title">Phân tích: Vi phạm thủ tục có nghiêm trọng không?</h3><button data-close-button class="modal-close-btn" aria-label="Đóng">&times;</button></div><div class="modal-body"><p>Để một hợp đồng bị hủy bỏ, pháp luật đòi hỏi vi phạm phải ở mức <strong>"nghiêm trọng"</strong> hoặc <strong>"cơ bản"</strong>, tức là ảnh hưởng trực tiếp đến quyền lợi các bên hoặc làm sai lệch kết quả giao dịch. Tòa án đã xác định các vi phạm thủ tục trong vụ án này là không nghiêm trọng, vì:</p><ol><li><strong>Mục đích của Nguyên đơn đã đạt được:</strong><ul><li>Bán được tài sản với giá cao hơn giá khởi điểm.</li><li>Nhận đủ toàn bộ số tiền thanh toán.</li><li>Chủ động ký các văn bản bàn giao, thanh lý hợp đồng.</li></ul><p>Quyền lợi cốt lõi của Vinamoon không bị xâm phạm.</p></li><li><strong>Sự chấp thuận của Nguyên đơn:</strong><p>Bản án ghi rõ Vinamoon và những người tham gia khác <strong>không có ý kiến phản đối</strong> khi được thông báo về việc dời ngày đấu giá. Sự im lặng và tiếp tục tham gia (cử đại diện, ký hợp đồng mua bán) được xem như sự chấp nhận, hay "từ bỏ quyền khiếu nại" về các sai sót thủ tục đó.</p></li><li><strong>Không có thiệt hại thực tế:</strong><p>Tòa án khẳng định: "Nguyên đơn xác nhận cho đến nay Nguyên đơn không có tài liệu, chứng cứ chứng minh thiệt hại của Nguyên đơn...". Một vi phạm không gây thiệt hại vật chất thì khó có thể bị coi là "nghiêm trọng".</p></li></ol><p class="p-4 bg-teal-50 border-l-4 border-teal-400 text-teal-800 rounded-r-lg"><strong>Kết luận của Tòa:</strong> Các sai sót chỉ là vi phạm về hình thức, không làm thay đổi bản chất giao dịch, không làm sai lệch kết quả và không gây thiệt hại cho Nguyên đơn. Do đó, không đủ cơ sở để hủy hợp đồng.</p><button class="gemini-btn" data-prompt="Phân tích sâu hơn về các vi phạm thủ tục trong một vụ án đấu giá và giải thích tại sao chúng có thể bị coi là không nghiêm trọng, ngay cả khi luật định đã bị vi phạm."><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3V1M12 23V21M21 12H23M1 12H3M18.36 18.36L19.78 19.78M4.22 4.22L5.64 5.64M18.36 5.64L19.78 4.22M4.22 19.78L5.64 18.36M15 9l-2.5 5.5L7 9l5.5-2.5L15 9z"/><path d="M9 15l2.5-5.5L17 15l-5.5 2.5L9 15z"/></svg>Phân tích thêm với A.I</button><div class="gemini-result-container" style="display: none;"></div></div></div>
     <div id="modal-analysis-2" class="modal"><div class="modal-header"><h3 class="modal-title">Phân tích: Vấn đề thanh toán & Tính ngay tình</h3><button data-close-button class="modal-close-btn" aria-label="Đóng">&times;</button></div><div class="modal-body"><h4>1. Về việc thanh toán chậm</h4><p><strong>Lập luận của Nguyên đơn:</strong> Công ty Trung Thực thanh toán chậm 145 ngày so với quy chế ban đầu.</p><p><strong>Nhận định của Tòa án:</strong> Lập luận này không hợp lệ vì các bên đã có một thỏa thuận mới thay thế:</p><ul><li>Ngày 28/06/2017, chính Công ty Vinamoon và Công ty Trung Thực đã ký <strong>"Biên bản thương thảo hợp đồng"</strong>.</li><li>Biên bản này thống nhất gia hạn thời hạn thanh toán thành <strong>100 ngày làm việc</strong> kể từ ngày ký hợp đồng công chứng.</li><li>Công ty Trung Thực đã thanh toán trong thời hạn mới này.</li><li>Hành vi nhận đủ tiền, xuất hóa đơn và bàn giao tài sản của Vinamoon đã khẳng định sự đồng thuận của họ với thỏa thuận mới.</li></ul><hr class="my-6"><h4>2. Về tính "ngay tình" của bên mua</h4><p><strong>Nhận định của Tòa án:</strong> Tòa án viện dẫn Điều 133 BLDS 2015 và Điều 7 Luật đấu giá tài sản 2016 để bảo vệ Công ty Trung Thực với tư cách là "người thứ ba ngay tình". Tòa cho rằng họ đã tham gia đúng quy trình, thanh toán đầy đủ và cần được bảo vệ.</p><p><strong>Bình luận (Điểm bất đồng của nhóm nghiên cứu):</strong> Việc áp dụng này là <strong>khiên cưỡng</strong>. "Ngay tình" có nghĩa là không biết và không buộc phải biết về sai phạm. Tuy nhiên, Công ty Trung Thực:</p><ul><li>Biết về sự mâu thuẫn tiền đặt trước (đăng báo 1.5% nhưng nộp 2%).</li><li>Biết về việc thay đổi ngày đấu giá không công khai.</li><li>Chủ động thương lượng để thay đổi thời hạn thanh toán.</li></ul><p class="p-4 bg-red-50 border-l-4 border-red-400 text-red-800 rounded-r-lg">Những hành vi trên cho thấy Công ty Trung Thực đã biết và chấp nhận các sai sót để hưởng lợi. Do đó, họ không hoàn toàn "ngay tình". Việc Tòa án bảo vệ họ dưới danh nghĩa này có thể tạo ra tiền lệ không tốt.</p><button class="gemini-btn" data-prompt="Phân tích sâu khái niệm 'người thứ ba ngay tình' trong bối cảnh một vụ án đấu giá có sai sót thủ tục. Liệu một bên có thể được coi là 'ngay tình' khi họ biết về sai sót nhưng vẫn tiếp tục giao dịch và thậm chí hưởng lợi từ nó không? Giải thích dựa trên các quy định pháp luật và án lệ (nếu có)."><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3V1M12 23V21M21 12H23M1 12H3M18.36 18.36L19.78 19.78M4.22 4.22L5.64 5.64M18.36 5.64L19.78 4.22M4.22 19.78L5.64 18.36M15 9l-2.5 5.5L7 9l5.5-2.5L15 9z"/><path d="M9 15l2.5-5.5L17 15l-5.5 2.5L9 15z"/></svg>Phân tích thêm với A.I</button><div class="gemini-result-container" style="display: none;"></div></div></div>
     
@@ -1038,6 +1120,31 @@
                     closeModal(activeModal);
                 }
             });
+
+            // --- Tab Logic ---
+            const tabContainers = document.querySelectorAll('.modal');
+            tabContainers.forEach(container => {
+                const tabButtons = container.querySelectorAll('.tab-btn');
+                const tabContents = container.querySelectorAll('.tab-content');
+
+                if (tabButtons.length > 0) {
+                     tabButtons.forEach(button => {
+                        button.addEventListener('click', () => {
+                            const targetId = button.dataset.tabTarget;
+                            const targetContent = container.querySelector(targetId);
+
+                            tabButtons.forEach(btn => btn.classList.remove('active'));
+                            tabContents.forEach(content => content.classList.remove('active'));
+
+                            button.classList.add('active');
+                            if (targetContent) {
+                                targetContent.classList.add('active');
+                            }
+                        });
+                    });
+                }
+            });
+
 
             // --- Gemini API Integration ---
             const geminiButtons = document.querySelectorAll('.gemini-btn');
