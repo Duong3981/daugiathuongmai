@@ -24,7 +24,7 @@
             --color-border: #e5e7eb;       /* Gray 200 */
         }
         body {
-            font-family: 'Inter', 'Segoe UI Emoji', sans-serif; /* Added Segoe UI Emoji for better emoji support */
+            font-family: 'Inter', 'Segoe UI Emoji', sans-serif;
             background-color: var(--color-bg-light);
             color: var(--color-text-dark);
             overflow-x: hidden;
@@ -41,7 +41,7 @@
         */
         .hero-section {
             background-color: var(--color-bg-dark);
-            background-image: linear-gradient(135deg, var(--color-bg-dark) 0%, #047857 100%); /* Emerald 700 */
+            background-image: linear-gradient(135deg, var(--color-bg-dark) 0%, #047857 100%);
             padding: 7rem 1.5rem;
             text-align: center;
         }
@@ -81,8 +81,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 0.5rem 1rem; /* row-gap column-gap for wrapping */
-            flex-wrap: wrap; /* Allow wrapping on small screens */
+            gap: 0.5rem 1rem;
+            flex-wrap: wrap;
             max-width: 1100px;
             margin: 0 auto;
         }
@@ -247,21 +247,40 @@
             margin-bottom: 2rem;
         }
         
+        /* UPDATED ARGUMENT SECTION STYLES */
         .argument-card {
-            background-color: #f1f5f9;
-            border-radius: 1rem;
-            border: 1px solid var(--color-border);
+            border-radius: 0.75rem;
             overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
             display: flex;
             flex-direction: column;
         }
-        .argument-header { padding: 1rem 1.5rem; font-weight: 700; font-size: 1.25rem; color: white; }
-        .plaintiff .argument-header { background-image: linear-gradient(to right, #f97316, #fb923c); }
-        .defendant .argument-header { background-image: linear-gradient(to right, #10b981, #34d399); }
-        .argument-list { padding: 1.5rem; display: flex; flex-direction: column; gap: 1.25rem; flex-grow: 1;}
+        .argument-header { 
+            padding: 1rem 1.5rem; 
+            font-weight: 700; 
+            font-size: 1.25rem; 
+            color: white; 
+        }
+        .plaintiff .argument-header { background-color: #f97316; } /* Solid Orange */
+        .defendant .argument-header { background-color: #10b981; } /* Solid Green */
+        .argument-list { 
+            padding: 1.5rem; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 1.25rem; 
+            flex-grow: 1;
+            background-color: #f8fafc; /* Light grey background for content */
+            color: var(--color-text-dark);
+        }
         .argument-item { display: flex; gap: 1rem; align-items: flex-start; }
-        .argument-item .emoji-icon { font-size: 1.25rem; line-height: 1.6; }
-        
+        .argument-item .emoji-icon { 
+            font-size: 1.25rem; 
+            line-height: 1.6;
+        }
+        .plaintiff .emoji-icon { color: #ef4444; } /* Red for X */
+        .defendant .emoji-icon { color: var(--color-primary); } /* Green for Check */
+        /* END OF UPDATED STYLES */
+
         .analysis-point {
             background-color: #fff;
             border: 1px solid var(--color-border);
@@ -418,27 +437,30 @@
         ANIMATION STYLES
         ==============================================
         */
-        .animate-on-scroll { opacity: 0; transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
-        .fade-in { transform: translateY(20px); }
-        .fade-in-up { transform: translateY(40px); }
-        .fade-in-down { transform: translateY(-40px); }
-        .fade-in-left { transform: translateX(-40px); }
-        .fade-in-right { transform: translateX(40px); }
-        .fade-in-zoom { transform: scale(0.9); }
-        .is-visible { opacity: 1; transform: none; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+        }
+        
+        .is-visible {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
     </style>
 </head>
 <body>
 
-    <!-- HERO SECTION -->
-    <header class="hero-section">
-        <div class="animate-on-scroll fade-in-down">
+    <header class="hero-section animate-on-scroll">
+        <div>
             <h1 class="header-title">ĐẤU GIÁ HÀNG HÓA</h1>
             <p class="header-subtitle">Tranh chấp Hợp đồng đấu giá hàng hóa</p>
         </div>
     </header>
 
-    <!-- STICKY NAVIGATION -->
     <nav class="sticky-nav">
         <div class="nav-links">
             <a href="#legal-foundation">Cơ Sở Pháp Lý</a>
@@ -452,15 +474,13 @@
     </nav>
     
     <main class="main-container">
-        <!-- LEGAL FOUNDATION -->
-        <section id="legal-foundation" class="section">
-            <h2 class="section-heading animate-on-scroll fade-in-up">
+        <section id="legal-foundation" class="section animate-on-scroll">
+            <h2 class="section-heading">
                 <span class="emoji-icon">⚖️</span>
                 Cơ Sở Pháp Lý
             </h2>
             <div class="card card-padded space-y-12 ">
-                <!-- Khai niem & Nguyen tac -->
-                <div class="animate-on-scroll fade-in">
+                <div>
                     <h3 class="subsection-heading mb-8">1. Khái niệm & Nguyên tắc</h3>
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
                         <div class="quote-card-new">
@@ -494,8 +514,7 @@
                 </div>
                 <hr class="border-t border-gray-200">
                 
-                <!-- Phuong thuc dau gia -->
-                <div class="animate-on-scroll fade-in">
+                <div>
                     <h3 class="subsection-heading">2. Phương thức đấu giá</h3>
                     <p class="text-center text-gray-500 mb-6 -mt-4">Luật Thương mại 2005 ghi nhận hai phương thức chính.</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -511,39 +530,38 @@
                 </div>
                 <hr class="border-t border-gray-200">
                 
-                <!-- Dac diem nhan dien -->
                 <div class="space-y-6">
                     <h3 class="subsection-heading">3. Sáu Đặc Điểm Nhận Diện</h3>
                     <p class="text-center text-gray-500 mb-6 -mt-4">Nhấp vào từng đặc điểm để xem chi tiết.</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <div class="feature-card-clickable animate-on-scroll fade-in-zoom" data-modal-target="#modal-feature-1" role="button" tabindex="0">
+                        <div class="feature-card-clickable" data-modal-target="#modal-feature-1" role="button" tabindex="0">
                             <div class="feature-icon-clickable">🔨</div>
                             <h5 class="font-bold text-lg">Phương thức đặc biệt</h5>
                         </div>
-                        <div class="feature-card-clickable animate-on-scroll fade-in-zoom" style="transition-delay: 0.1s" data-modal-target="#modal-feature-2" role="button" tabindex="0">
+                        <div class="feature-card-clickable" data-modal-target="#modal-feature-2" role="button" tabindex="0">
                             <div class="feature-icon-clickable">📈</div>
                             <h5 class="font-bold text-lg">Tìm giá cao nhất</h5>
                         </div>
-                        <div class="feature-card-clickable animate-on-scroll fade-in-zoom" style="transition-delay: 0.2s" data-modal-target="#modal-feature-3" role="button" tabindex="0">
+                        <div class="feature-card-clickable" data-modal-target="#modal-feature-3" role="button" tabindex="0">
                             <div class="feature-icon-clickable">✅</div>
                             <h5 class="font-bold text-lg">Hàng hóa hợp pháp</h5>
                         </div>
-                        <div class="feature-card-clickable animate-on-scroll fade-in-zoom" style="transition-delay: 0.3s" data-modal-target="#modal-feature-4" role="button" tabindex="0">
+                        <div class="feature-card-clickable" data-modal-target="#modal-feature-4" role="button" tabindex="0">
                             <div class="feature-icon-clickable">🕴️</div>
                             <h5 class="font-bold text-lg">Chủ thể là thương nhân</h5>
                         </div>
-                        <div class="feature-card-clickable animate-on-scroll fade-in-zoom" style="transition-delay: 0.4s" data-modal-target="#modal-feature-5" role="button" tabindex="0">
+                        <div class="feature-card-clickable" data-modal-target="#modal-feature-5" role="button" tabindex="0">
                             <div class="feature-icon-clickable">📜</div>
                             <h5 class="font-bold text-lg">Hình thức pháp lý</h5>
                         </div>
-                        <div class="feature-card-clickable animate-on-scroll fade-in-zoom" style="transition-delay: 0.5s" data-modal-target="#modal-feature-6" role="button" tabindex="0">
+                        <div class="feature-card-clickable" data-modal-target="#modal-feature-6" role="button" tabindex="0">
                             <div class="feature-icon-clickable">🌍</div>
                             <h5 class="font-bold text-lg">Luật điều chỉnh kép</h5>
                         </div>
                     </div>
                 </div>
                 <hr class="border-t border-gray-200">
-                <div class="space-y-8 animate-on-scroll fade-in">
+                <div class="space-y-8 ">
                     <h3 class="subsection-heading">4. Chủ thể & Thủ tục</h3>
                     <div>
                         <h4 class="font-semibold text-lg text-gray-700 mb-4 text-center">Các Bên Liên Quan Chính</h4>
@@ -580,30 +598,28 @@
             </div>
         </section>
         
-        <!-- CASE TIMELINE -->
-        <section id="case-timeline" class="section">
-            <h2 class="section-heading animate-on-scroll fade-in-up">
+        <section id="case-timeline" class="section animate-on-scroll">
+            <h2 class="section-heading">
                 <span class="emoji-icon">🗓️</span>
                 Diễn Biến Vụ Án
             </h2>
             <div class="timeline-container">
-                <div class="timeline-item animate-on-scroll fade-in-up" style="transition-delay: 0s;"><div class="timeline-icon">📝</div><div class="timeline-content"><p class="timeline-date">12/04/2017</p><h3 class="timeline-title">Ký Hợp đồng Bán đấu giá</h3><p class="text-gray-600">Vinamoon và Cty Châu Phi ký HĐ để đấu giá lô vàng 5.997,16g.</p></div></div>
-                <div class="timeline-item animate-on-scroll fade-in-up" style="transition-delay: 0.1s;"><div class="timeline-icon">🏛️</div><div class="timeline-content"><p class="timeline-date">30/05/2017</p><h3 class="timeline-title">Tổ chức đấu giá</h3><p class="text-gray-600">Cty Trung Thực trúng đấu giá với giá 9,05 tỷ VNĐ.</p></div></div>
-                <div class="timeline-item animate-on-scroll fade-in-up" style="transition-delay: 0.2s;"><div class="timeline-icon">🤝</div><div class="timeline-content"><p class="timeline-date">28/06/2017</p><h3 class="timeline-title">Ký Biên bản thương thảo</h3><p class="text-gray-600">Vinamoon và Trung Thực ký biên bản gia hạn thời gian thanh toán.</p></div></div>
-                <div class="timeline-item animate-on-scroll fade-in-up" style="transition-delay: 0.3s;"><div class="timeline-icon">📜</div><div class="timeline-content"><p class="timeline-date">03/08/2017</p><h3 class="timeline-title">Ký HĐ Mua bán & Công chứng</h3><p class="text-gray-600">Các bên ký HĐ Mua bán tài sản bán đấu giá, được công chứng hợp pháp.</p></div></div>
-                <div class="timeline-item animate-on-scroll fade-in-up" style="transition-delay: 0.4s;"><div class="timeline-icon">🧾</div><div class="timeline-content"><p class="timeline-date">21/12/2017</p><h3 class="timeline-title">Hoàn tất Giao dịch</h3><p class="text-gray-600">Cty Trung Thực thanh toán đủ tiền. Vinamoon nhận tiền, xuất hóa đơn và bàn giao tài sản.</p></div></div>
-                <div class="timeline-item animate-on-scroll fade-in-up" style="transition-delay: 0.5s;"><div class="timeline-icon">⚠️</div><div class="timeline-content"><p class="timeline-date">24/01/2022</p><h3 class="timeline-title">Khởi kiện</h3><p class="text-gray-600">Sau gần 5 năm, Vinamoon khởi kiện, cho rằng quy trình có nhiều vi phạm.</p></div></div>
+                <div class="timeline-item"><div class="timeline-icon">📝</div><div class="timeline-content"><p class="timeline-date">12/04/2017</p><h3 class="timeline-title">Ký Hợp đồng Bán đấu giá</h3><p class="text-gray-600">Vinamoon và Cty Châu Phi ký HĐ để đấu giá lô vàng 5.997,16g.</p></div></div>
+                <div class="timeline-item"><div class="timeline-icon">🏛️</div><div class="timeline-content"><p class="timeline-date">30/05/2017</p><h3 class="timeline-title">Tổ chức đấu giá</h3><p class="text-gray-600">Cty Trung Thực trúng đấu giá với giá 9,05 tỷ VNĐ.</p></div></div>
+                <div class="timeline-item"><div class="timeline-icon">🤝</div><div class="timeline-content"><p class="timeline-date">28/06/2017</p><h3 class="timeline-title">Ký Biên bản thương thảo</h3><p class="text-gray-600">Vinamoon và Trung Thực ký biên bản gia hạn thời gian thanh toán.</p></div></div>
+                <div class="timeline-item"><div class="timeline-icon">📜</div><div class="timeline-content"><p class="timeline-date">03/08/2017</p><h3 class="timeline-title">Ký HĐ Mua bán & Công chứng</h3><p class="text-gray-600">Các bên ký HĐ Mua bán tài sản bán đấu giá, được công chứng hợp pháp.</p></div></div>
+                <div class="timeline-item"><div class="timeline-icon">🧾</div><div class="timeline-content"><p class="timeline-date">21/12/2017</p><h3 class="timeline-title">Hoàn tất Giao dịch</h3><p class="text-gray-600">Cty Trung Thực thanh toán đủ tiền. Vinamoon nhận tiền, xuất hóa đơn và bàn giao tài sản.</p></div></div>
+                <div class="timeline-item"><div class="timeline-icon">⚠️</div><div class="timeline-content"><p class="timeline-date">24/01/2022</p><h3 class="timeline-title">Khởi kiện</h3><p class="text-gray-600">Sau gần 5 năm, Vinamoon khởi kiện, cho rằng quy trình có nhiều vi phạm.</p></div></div>
             </div>
         </section>
 
-        <!-- ARGUMENTS -->
-        <section id="arguments" class="section">
-            <h2 class="section-heading animate-on-scroll fade-in-up">
+        <section id="arguments" class="section animate-on-scroll">
+            <h2 class="section-heading">
                 <span class="emoji-icon">⚔️</span>
                 Lập Luận Của Các Bên
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="argument-card plaintiff animate-on-scroll fade-in-left">
+                <div class="argument-card plaintiff">
                     <div class="argument-header">Phía Nguyên Đơn (Công ty Vinamoon)</div>
                     <div class="argument-list">
                         <div class="argument-item"><span class="emoji-icon">❌</span><span><strong>Thông báo không đủ ngày:</strong> Thời gian đăng báo không đảm bảo đủ 7 ngày làm việc theo luật định, ảnh hưởng tính công khai.</span></div>
@@ -613,7 +629,7 @@
                         <div class="argument-item"><span class="emoji-icon">❌</span><span><strong>Thanh toán chậm:</strong> Bên trúng đấu giá đã thanh toán chậm 145 ngày so với quy chế ban đầu, là vi phạm nghiêm trọng.</span></div>
                     </div>
                 </div>
-                 <div class="argument-card defendant animate-on-scroll fade-in-right">
+                 <div class="argument-card defendant">
                     <div class="argument-header">Phía Bị Đơn & Liên Quan</div>
                      <div class="argument-list">
                         <div class="argument-item"><span class="emoji-icon">✔️</span><span><strong>Vinamoon đã biết và chấp thuận:</strong> Toàn bộ quy trình, kể cả việc dời ngày, đều có sự tham gia và không có sự phản đối nào từ Vinamoon.</span></div>
@@ -626,13 +642,12 @@
             </div>
         </section>
 
-        <!-- VERDICT -->
-        <section id="verdict" class="section">
-             <h2 class="section-heading animate-on-scroll fade-in-up">
+        <section id="verdict" class="section animate-on-scroll">
+             <h2 class="section-heading">
                  <span class="emoji-icon">🏛️</span>
                 Phán Quyết của Tòa Án
             </h2>
-            <div class="verdict-box text-left space-y-4 animate-on-scroll fade-in-zoom">
+            <div class="verdict-box text-left space-y-4">
                 <h3 class="verdict-title text-center">BÁC BỎ TOÀN BỘ YÊU CẦU KHỞI KIỆN</h3>
                 <div class="bg-white/10 p-4 rounded-lg">
                     <strong>1. Không chấp nhận yêu cầu hủy Hợp đồng bán đấu giá</strong> và các yêu cầu liên quan đối với Công ty Châu Phi.
@@ -646,15 +661,13 @@
             </div>
         </section>
 
-        <!-- ANALYSIS -->
-        <section id="analysis" class="section">
-            <h2 class="section-heading animate-on-scroll fade-in-up">
+        <section id="analysis" class="section animate-on-scroll">
+            <h2 class="section-heading">
                 <span class="emoji-icon">🔍</span>
                 Phân Tích Nhận Định Của Tòa
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Analysis Point 1 -->
-                <div class="analysis-point animate-on-scroll fade-in-left">
+                <div class="analysis-point">
                     <h3 class="analysis-title">Vấn đề 1: Vi phạm thủ tục có nghiêm trọng không?</h3>
                     <div class="analysis-summary">
                         <div class="analysis-box">
@@ -668,8 +681,7 @@
                     </div>
                     <button data-modal-target="#modal-analysis-1" class="read-more-btn">Phân tích sâu về vi phạm thủ tục</button>
                 </div>
-                <!-- Analysis Point 2 -->
-                <div class="analysis-point animate-on-scroll fade-in-right">
+                <div class="analysis-point">
                     <h3 class="analysis-title">Vấn đề 2: Tính ngay tình & thời hạn thanh toán</h3>
                     <div class="analysis-summary">
                         <div class="analysis-box">
@@ -686,13 +698,12 @@
             </div>
         </section>
 
-        <!-- COMMENTARY -->
-        <section id="commentary" class="section">
-            <h2 class="section-heading animate-on-scroll fade-in-up">
+        <section id="commentary" class="section animate-on-scroll">
+            <h2 class="section-heading">
                 <span class="emoji-icon">💬</span>
                 Bình Luận Của Nhóm Nghiên Cứu
             </h2>
-            <div class="commentary-box animate-on-scroll fade-in-up">
+            <div class="commentary-box">
                 <div class="commentary-grid">
                     <div class="commentary-point commentary-agree">
                         <h4><div class="icon-wrapper">👍</div>Điểm Đồng Tình</h4>
@@ -713,14 +724,13 @@
             </div>
         </section>
         
-        <!-- RECOMMENDATIONS -->
-        <section id="recommendations" class="section">
-            <h2 class="section-heading animate-on-scroll fade-in-up">
+        <section id="recommendations" class="section animate-on-scroll">
+            <h2 class="section-heading">
                 <span class="emoji-icon">💡</span>
                 Bài Học & Khuyến Nghị
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="recommendation-card recommendation-card-1 animate-on-scroll fade-in-up" style="transition-delay: 0s;">
+                <div class="recommendation-card">
                     <h3 class="recommendation-title"><span class="emoji-icon">👤</span>Đối với Người có tài sản</h3>
                     <ul class="list-disc list-inside text-gray-700 space-y-2">
                         <li><strong>Chủ động giám sát:</strong> Luôn theo dõi chặt chẽ quy trình đấu giá.</li>
@@ -728,21 +738,21 @@
                          <li><strong>Quy định rõ trong hợp đồng:</strong> Nêu rõ vi phạm nào là "cơ bản" để làm điều kiện hủy hợp đồng.</li>
                     </ul>
                 </div>
-                 <div class="recommendation-card recommendation-card-2 animate-on-scroll fade-in-up" style="transition-delay: 0.1s;">
+                 <div class="recommendation-card">
                     <h3 class="recommendation-title"><span class="emoji-icon">🏢</span>Đối với Tổ chức đấu giá</h3>
                     <ul class="list-disc list-inside text-gray-700 space-y-2">
                         <li><strong>Tuân thủ nghiêm ngặt:</strong> Coi việc tuân thủ luật định là nghĩa vụ cốt lõi.</li>
                         <li><strong>Lưu trữ hồ sơ đầy đủ:</strong> Mọi thay đổi phải được thông báo và lưu lại văn bản cẩn thận.</li>
                     </ul>
                 </div>
-                 <div class="recommendation-card recommendation-card-3 animate-on-scroll fade-in-up" style="transition-delay: 0.2s;">
+                 <div class="recommendation-card">
                     <h3 class="recommendation-title"><span class="emoji-icon">👥</span>Đối với Người tham gia đấu giá</h3>
                     <ul class="list-disc list-inside text-gray-700 space-y-2">
                         <li><strong>Thẩm định thông tin:</strong> Kiểm tra kỹ quy chế, đối chiếu thông báo. Yêu cầu làm rõ nếu có mâu thuẫn.</li>
                         <li><strong>Cân nhắc rủi ro:</strong> Thận trọng khi tham gia một cuộc đấu giá có dấu hiệu sai phạm thủ tục.</li>
                     </ul>
                 </div>
-                 <div class="recommendation-card recommendation-card-4 animate-on-scroll fade-in-up" style="transition-delay: 0.3s;">
+                 <div class="recommendation-card">
                     <h3 class="recommendation-title"><span class="emoji-icon">⚖️</span>Đối với Tòa án</h3>
                     <ul class="list-disc list-inside text-gray-700 space-y-2">
                           <li><strong>Đánh giá toàn diện:</strong> Xem xét đúng mức độ nghiêm trọng của vi phạm, không chỉ dựa vào thiệt hại vật chất.</li>
@@ -753,75 +763,112 @@
         </section>
     </main>
 
-    <!-- MODALS SECTION -->
     <div id="modal-overlay" class="modal-overlay"></div>
+
     <div id="modal-analysis-1" class="modal"><div class="modal-header"><h3 class="modal-title">Phân tích: Vi phạm thủ tục có nghiêm trọng không?</h3><button data-close-button class="modal-close-btn" aria-label="Đóng">&times;</button></div><div class="modal-body"><p>Để một hợp đồng bị hủy bỏ, pháp luật đòi hỏi vi phạm phải ở mức <strong>"nghiêm trọng"</strong> hoặc <strong>"cơ bản"</strong>, tức là ảnh hưởng trực tiếp đến quyền lợi các bên hoặc làm sai lệch kết quả giao dịch. Tòa án đã xác định các vi phạm thủ tục trong vụ án này là không nghiêm trọng, vì:</p><ol><li><strong>Mục đích của Nguyên đơn đã đạt được:</strong><ul><li>Bán được tài sản với giá cao hơn giá khởi điểm.</li><li>Nhận đủ toàn bộ số tiền thanh toán.</li><li>Chủ động ký các văn bản bàn giao, thanh lý hợp đồng.</li></ul><p>Quyền lợi cốt lõi của Vinamoon không bị xâm phạm.</p></li><li><strong>Sự chấp thuận của Nguyên đơn:</strong><p>Bản án ghi rõ Vinamoon và những người tham gia khác <strong>không có ý kiến phản đối</strong> khi được thông báo về việc dời ngày đấu giá. Sự im lặng và tiếp tục tham gia (cử đại diện, ký hợp đồng mua bán) được xem như sự chấp nhận, hay "từ bỏ quyền khiếu nại" về các sai sót thủ tục đó.</p></li><li><strong>Không có thiệt hại thực tế:</strong><p>Tòa án khẳng định: "Nguyên đơn xác nhận cho đến nay Nguyên đơn không có tài liệu, chứng cứ chứng minh thiệt hại của Nguyên đơn...". Một vi phạm không gây thiệt hại vật chất thì khó có thể bị coi là "nghiêm trọng".</p></li></ol><p class="p-4 bg-teal-50 border-l-4 border-teal-400 text-teal-800 rounded-r-lg"><strong>Kết luận của Tòa:</strong> Các sai sót chỉ là vi phạm về hình thức, không làm thay đổi bản chất giao dịch, không làm sai lệch kết quả và không gây thiệt hại cho Nguyên đơn. Do đó, không đủ cơ sở để hủy hợp đồng.</p></div></div>
-    <div id="modal-analysis-2" class="modal"><div class="modal-header"><h3 class="modal-title">Phân tích: Vấn đề thanh toán & Tính ngay tình</h3><button data-close-button class="modal-close-btn" aria-label="Đóng">&times;</button></div><div class="modal-body"><p><strong>Lập luận của Nguyên đơn:</strong> Công ty Trung Thực thanh toán chậm 145 ngày so với quy chế ban đầu.</p><p><strong>Nhận định của Tòa án:</strong> Lập luận này không hợp lệ vì các bên đã có một thỏa thuận mới thay thế:</p><ul><li>Ngày 28/06/2017, chính Công ty Vinamoon và Công ty Trung Thực đã ký <strong>"Biên bản thương thảo hợp đồng"</strong>.</li><li>Biên bản này thống nhất gia hạn thời hạn thanh toán thành <strong>100 ngày làm việc</strong> kể từ ngày ký hợp đồng công chứng.</li><li>Công ty Trung Thực đã thanh toán trong thời hạn mới này.</li><li>Hành vi nhận đủ tiền, xuất hóa đơn và bàn giao tài sản của Vinamoon đã khẳng định sự đồng thuận của họ với thỏa thuận mới.</li></ul><hr class="my-6"><h4>2. Về tính "ngay tình" của bên mua</h4><p><strong>Nhận định của Tòa án:</strong> Tòa án viện dẫn Điều 133 BLDS 2015 và Điều 7 Luật đấu giá tài sản 2016 để bảo vệ Công ty Trung Thực với tư cách là "người thứ ba ngay tình". Tòa cho rằng họ đã tham gia đúng quy trình, thanh toán đầy đủ và cần được bảo vệ.</p><p><strong>Bình luận (Điểm bất đồng của nhóm nghiên cứu):</strong> Việc áp dụng này là <strong>khiên cưỡng</strong>. "Ngay tình" có nghĩa là không biết và không buộc phải biết về sai phạm. Tuy nhiên, Công ty Trung Thực:</p><ul><li>Biết về sự mâu thuẫn tiền đặt trước (đăng báo 1.5% nhưng nộp 2%).</li><li>Biết về việc thay đổi ngày đấu giá không công khai.</li><li>Chủ động thương lượng để thay đổi thời hạn thanh toán.</li></ul><p class="p-4 bg-red-50 border-l-4 border-red-400 text-red-800 rounded-r-lg">Những hành vi trên cho thấy Công ty Trung Thực đã biết và chấp nhận các sai sót để hưởng lợi. Do đó, họ không hoàn toàn "ngay tình". Việc Tòa án bảo vệ họ dưới danh nghĩa này có thể tạo ra tiền lệ không tốt.</p></div></div>
-    <div id="modal-feature-1" class="modal"><div class="modal-header"><h3 class="modal-title">Đặc Điểm Đấu Giá</h3><button data-close-button class="modal-close-btn" aria-label="Đóng">&times;</button></div><div class="modal-body"><div class="md:flex md:items-center md:gap-8"><div class="md:w-1/3 text-center mb-6 md:mb-0"><div class="inline-block p-6 bg-emerald-100 rounded-full"><span class="emoji-icon">🔨</span></div></div><div class="md:w-2/3"><h4 class="modal-feature-title">Phương thức bán hàng hóa đặc biệt</h4><p class="text-gray-600">Đấu giá là một hình thức bán hàng đặc biệt vì phải tuân theo trình tự, thủ tục chặt chẽ do pháp luật quy định, đảm bảo sự cạnh tranh công bằng cho tất cả các bên tham gia.</p></div></div></div></div>
-    <div id="modal-feature-2" class="modal"><div class="modal-header"><h3 class="modal-title">Đặc Điểm Đấu Giá</h3><button data-close-button class="modal-close-btn" aria-label="Đóng">&times;</button></div><div class="modal-body"><div class="md:flex md:items-center md:gap-8"><div class="md:w-1/3 text-center mb-6 md:mb-0"><div class="inline-block p-6 bg-emerald-100 rounded-full"><span class="emoji-icon">📈</span></div></div><div class="md:w-2/3"><h4 class="modal-feature-title">Tìm kiếm người trả giá cao nhất</h4><p class="text-gray-600">Mục đích chính của hoạt động đấu giá là để tìm ra người mua sẵn sàng trả mức giá cao nhất cho hàng hóa, mang lại hiệu quả cao cho chủ sở hữu tài sản.</p></div></div></div></div>
-    <div id="modal-feature-3" class="modal"><div class="modal-header"><h3 class="modal-title">Đặc Điểm Đấu Giá</h3><button data-close-button class="modal-close-btn" aria-label="Đóng">&times;</button></div><div class="modal-body"><div class="md:flex md:items-center md:gap-8"><div class="md:w-1/3 text-center mb-6 md:mb-0"><div class="inline-block p-6 bg-emerald-100 rounded-full"><span class="emoji-icon">✅</span></div></div><div class="md:w-2/3"><h4 class="modal-feature-title">Đối tượng là các hàng hóa được phép lưu thông</h4><p class="text-gray-600">Hàng hóa được mang ra đấu giá phải là những tài sản được phép lưu thông một cách hợp pháp trên thị trường.</p></div></div></div></div>
-    <div id="modal-feature-4" class="modal"><div class="modal-header"><h3 class="modal-title">Đặc Điểm Đấu Giá</h3><button data-close-button class="modal-close-btn" aria-label="Đóng">&times;</button></div><div class="modal-body"><div class="md:flex md:items-center md:gap-8"><div class="md:w-1/3 text-center mb-6 md:mb-0"><div class="inline-block p-6 bg-emerald-100 rounded-full"><span class="emoji-icon">🕴️</span></div></div><div class="md:w-2/3"><h4 class="modal-feature-title">Chủ thể là các thương nhân</h4><p class="text-gray-600">Chủ thể chính trong quan hệ đấu giá hàng hóa là các thương nhân, có thể là người trực tiếp tổ chức đấu giá hoặc thông qua một doanh nghiệp kinh doanh dịch vụ đấu giá chuyên nghiệp.</p></div></div></div></div>
-    <div id="modal-feature-5" class="modal"><div class="modal-header"><h3 class="modal-title">Đặc Điểm Đấu Giá</h3><button data-close-button class="modal-close-btn" aria-label="Đóng">&times;</button></div><div class="modal-body"><div class="md:flex md:items-center md:gap-8"><div class="md:w-1/3 text-center mb-6 md:mb-0"><div class="inline-block p-6 bg-emerald-100 rounded-full"><span class="emoji-icon">📜</span></div></div><div class="md:w-2/3"><h4 class="modal-feature-title">Thể hiện dưới dạng hợp đồng và văn bản</h4><p class="text-gray-600">Hoạt động này được thiết lập dựa trên hợp đồng dịch vụ đấu giá và văn bản bán đấu giá. Văn bản bán đấu giá xác lập quyền sở hữu của người mua đối với hàng hóa.</p></div></div></div></div>
-    <div id="modal-feature-6" class="modal"><div class="modal-header"><h3 class="modal-title">Đặc Điểm Đấu Giá</h3><button data-close-button class="modal-close-btn" aria-label="Đóng">&times;</button></div><div class="modal-body"><div class="md:flex md:items-center md:gap-8"><div class="md:w-1/3 text-center mb-6 md:mb-0"><div class="inline-block p-6 bg-emerald-100 rounded-full"><span class="emoji-icon">🌍</span></div></div><div class="md:w-2/3"><h4 class="modal-feature-title">Chịu sự điều chỉnh của nhiều Luật</h4><p class="text-gray-600">Hoạt động bán đấu giá hàng hóa không chỉ tuân thủ Luật Thương mại 2005 mà còn có thể chịu sự điều chỉnh của Luật Đấu giá tài sản 2016.</p></div></div></div></div>
+    <div id="modal-analysis-2" class="modal"><div class="modal-header"><h3 class="modal-title">Phân tích: Vấn đề thanh toán & Tính ngay tình</h3><button data-close-button class="modal-close-btn" aria-label="Đóng">&times;</button></div><div class="modal-body"><h4>1. Về việc thanh toán chậm</h4><p><strong>Lập luận của Nguyên đơn:</strong> Công ty Trung Thực thanh toán chậm 145 ngày so với quy chế ban đầu.</p><p><strong>Nhận định của Tòa án:</strong> Lập luận này không hợp lệ vì các bên đã có một thỏa thuận mới thay thế:</p><ul><li>Ngày 28/06/2017, chính Công ty Vinamoon và Công ty Trung Thực đã ký <strong>"Biên bản thương thảo hợp đồng"</strong>.</li><li>Biên bản này thống nhất gia hạn thời hạn thanh toán thành <strong>100 ngày làm việc</strong> kể từ ngày ký hợp đồng công chứng.</li><li>Công ty Trung Thực đã thanh toán trong thời hạn mới này.</li><li>Hành vi nhận đủ tiền, xuất hóa đơn và bàn giao tài sản của Vinamoon đã khẳng định sự đồng thuận của họ với thỏa thuận mới.</li></ul><hr class="my-6"><h4>2. Về tính "ngay tình" của bên mua</h4><p><strong>Nhận định của Tòa án:</strong> Tòa án viện dẫn Điều 133 BLDS 2015 và Điều 7 Luật đấu giá tài sản 2016 để bảo vệ Công ty Trung Thực với tư cách là "người thứ ba ngay tình". Tòa cho rằng họ đã tham gia đúng quy trình, thanh toán đầy đủ và cần được bảo vệ.</p><p><strong>Bình luận (Điểm bất đồng của nhóm nghiên cứu):</strong> Việc áp dụng này là <strong>khiên cưỡng</strong>. "Ngay tình" có nghĩa là không biết và không buộc phải biết về sai phạm. Tuy nhiên, Công ty Trung Thực:</p><ul><li>Biết về sự mâu thuẫn tiền đặt trước (đăng báo 1.5% nhưng nộp 2%).</li><li>Biết về việc thay đổi ngày đấu giá không công khai.</li><li>Chủ động thương lượng để thay đổi thời hạn thanh toán.</li></ul><p class="p-4 bg-red-50 border-l-4 border-red-400 text-red-800 rounded-r-lg">Những hành vi trên cho thấy Công ty Trung Thực đã biết và chấp nhận các sai sót để hưởng lợi. Do đó, họ không hoàn toàn "ngay tình". Việc Tòa án bảo vệ họ dưới danh nghĩa này có thể tạo ra tiền lệ không tốt.</p></div></div>
+    
+    <div id="modal-feature-1" class="modal"><div class="modal-header"><h3 class="modal-title">Đặc Điểm Đấu Giá</h3><button data-close-button class="modal-close-btn" aria-label="Đóng">&times;</button></div><div class="modal-body"><div class="md:flex md:items-center md:gap-8"><div class="md:w-1/3 text-center mb-6 md:mb-0"><div class="inline-block p-6 bg-emerald-100 rounded-full"><span class="emoji-icon">🔨</span></div></div><div class="md:w-2/3"><h4 class="modal-feature-title">Là phương thức bán hàng hóa đặc biệt</h4><p class="text-gray-600">Theo đó đấu giá là một hình thức bán hàng đặc biệt vì không giống các phương thức khác, nó phải tuân theo trình tự, thủ tục chặt chẽ do pháp luật quy định. Việc bán hàng phải được thực hiện một cách công khai, nhằm đảm bảo sự cạnh tranh công bằng cho tất cả các bên tham gia.</p></div></div></div></div>
+    <div id="modal-feature-2" class="modal"><div class="modal-header"><h3 class="modal-title">Đặc Điểm Đấu Giá</h3><button data-close-button class="modal-close-btn" aria-label="Đóng">&times;</button></div><div class="modal-body"><div class="md:flex md:items-center md:gap-8"><div class="md:w-1/3 text-center mb-6 md:mb-0"><div class="inline-block p-6 bg-emerald-100 rounded-full"><span class="emoji-icon">📈</span></div></div><div class="md:w-2/3"><h4 class="modal-feature-title">Tìm kiếm người trả giá cao nhất</h4><p class="text-gray-600">Mục đích chính và quan trọng nhất của hoạt động đấu giá là để tìm ra người mua sẵn sàng chấp nhận trả mức giá cao nhất cho hàng hóa. Chính vì vậy, đây được xem là một phương thức bán hàng mang lại hiệu quả cao cho chủ sở hữu tài sản.</p></div></div></div></div>
+    <div id="modal-feature-3" class="modal"><div class="modal-header"><h3 class="modal-title">Đặc Điểm Đấu Giá</h3><button data-close-button class="modal-close-btn" aria-label="Đóng">&times;</button></div><div class="modal-body"><div class="md:flex md:items-center md:gap-8"><div class="md:w-1/3 text-center mb-6 md:mb-0"><div class="inline-block p-6 bg-emerald-100 rounded-full"><span class="emoji-icon">✅</span></div></div><div class="md:w-2/3"><h4 class="modal-feature-title">Đối tượng là các hàng hóa được phép lưu thông</h4><p class="text-gray-600">Hàng hóa được mang ra đấu giá phải là những tài sản được phép lưu thông một cách hợp pháp trên thị trường. Trên thực tế, các hàng hóa này thường có tính đặc thù nhất định về chủng loại hoặc về giá trị sử dụng để thu hút người mua.</p></div></div></div></div>
+    <div id="modal-feature-4" class="modal"><div class="modal-header"><h3 class="modal-title">Đặc Điểm Đấu Giá</h3><button data-close-button class="modal-close-btn" aria-label="Đóng">&times;</button></div><div class="modal-body"><div class="md:flex md:items-center md:gap-8"><div class="md:w-1/3 text-center mb-6 md:mb-0"><div class="inline-block p-6 bg-emerald-100 rounded-full"><span class="emoji-icon">🕴️</span></div></div><div class="md:w-2/3"><h4 class="modal-feature-title">Chủ thể là các thương nhân</h4><p class="text-gray-600">Chủ thể chính trong quan hệ đấu giá hàng hóa là các thương nhân, có thể là người trực tiếp tổ chức đấu giá hoặc thông qua một doanh nghiệp kinh doanh dịch vụ đấu giá chuyên nghiệp. Quan hệ này bao gồm một người bán và sự tham gia của nhiều người mua khác nhau.</p></div></div></div></div>
+    <div id="modal-feature-5" class="modal"><div class="modal-header"><h3 class="modal-title">Đặc Điểm Đấu Giá</h3><button data-close-button class="modal-close-btn" aria-label="Đóng">&times;</button></div><div class="modal-body"><div class="md:flex md:items-center md:gap-8"><div class="md:w-1/3 text-center mb-6 md:mb-0"><div class="inline-block p-6 bg-emerald-100 rounded-full"><span class="emoji-icon">📜</span></div></div><div class="md:w-2/3"><h4 class="modal-feature-title">Thể hiện dưới dạng dịch vụ đấu giá và văn bản bán đấu giá</h4><p class="text-gray-600">Hoạt động này được thiết lập dựa trên hai hình thức chính là hợp đồng dịch vụ đấu giá và văn bản bán đấu giá. Hợp đồng dịch vụ ghi nhận thỏa thuận giữa người bán và người tổ chức, trong khi văn bản bán đấu giá xác lập quyền sở hữu của người mua đối với hàng hóa.</p></div></div></div></div>
+    <div id="modal-feature-6" class="modal"><div class="modal-header"><h3 class="modal-title">Đặc Điểm Đấu Giá</h3><button data-close-button class="modal-close-btn" aria-label="Đóng">&times;</button></div><div class="modal-body"><div class="md:flex md:items-center md:gap-8"><div class="md:w-1/3 text-center mb-6 md:mb-0"><div class="inline-block p-6 bg-emerald-100 rounded-full"><span class="emoji-icon">🌍</span></div></div><div class="md:w-2/3"><h4 class="modal-feature-title">Chịu sự điều chỉnh của nhiều Luật</h4><p class="text-gray-600">Hoạt động bán đấu giá hàng hóa không chỉ tuân thủ theo các quy định trong Luật Thương mại năm 2005. Bên cạnh đó, tùy vào tính chất của hàng hóa và hoạt động, nó còn có thể chịu sự điều chỉnh của các quy định trong Luật Đấu giá tài sản năm 2016.</p></div></div></div></div>
+    
     <div id="modal-principle-1" class="modal"><div class="modal-header"><h3 class="modal-title">Nguyên tắc Đấu giá</h3><button data-close-button class="modal-close-btn" aria-label="Đóng">&times;</button></div><div class="modal-body"><div class="md:flex md:items-center md:gap-8"><div class="md:w-1/3 text-center mb-6 md:mb-0"><div class="inline-block p-6 bg-emerald-100 rounded-full"><span class="emoji-icon">👀</span></div></div><div class="md:w-2/3"><h4 class="modal-feature-title">Nguyên tắc Công khai</h4><p class="text-gray-600">Những thông tin về đấu giá phải được công khai cho người muốn mua biết. Theo quy định, các nội dung bắt buộc công khai gồm: thời gian, địa điểm, thông tin về tài sản, giá khởi điểm, và thông tin người tổ chức.</p></div></div></div></div>
     <div id="modal-principle-2" class="modal"><div class="modal-header"><h3 class="modal-title">Nguyên tắc Đấu giá</h3><button data-close-button class="modal-close-btn" aria-label="Đóng">&times;</button></div><div class="modal-body"><div class="md:flex md:items-center md:gap-8"><div class="md:w-1/3 text-center mb-6 md:mb-0"><div class="inline-block p-6 bg-emerald-100 rounded-full"><span class="emoji-icon">✍️</span></div></div><div class="md:w-2/3"><h4 class="modal-feature-title">Nguyên tắc Trung thực</h4><p class="text-gray-600">Các thông báo về cuộc đấu giá và thông tin liên quan đến hàng hóa phải thật rõ ràng và chính xác. Người bán phải trung thực khi xác định giá khởi điểm. Người mua có quyền trả lại hàng nếu chất lượng không đúng như thông báo.</p></div></div></div></div>
     <div id="modal-principle-3" class="modal"><div class="modal-header"><h3 class="modal-title">Nguyên tắc Đấu giá</h3><button data-close-button class="modal-close-btn" aria-label="Đóng">&times;</button></div><div class="modal-body"><div class="md:flex md:items-center md:gap-8"><div class="md:w-1/3 text-center mb-6 md:mb-0"><div class="inline-block p-6 bg-emerald-100 rounded-full"><span class="emoji-icon">🛡️</span></div></div><div class="md:w-2/3"><h4 class="modal-feature-title">Nguyên tắc Bảo đảm Quyền lợi</h4><p class="text-gray-600">Quyền và lợi ích hợp pháp của các bên tham gia (người bán, người mua, người tổ chức) phải được coi trọng và bảo đảm đầy đủ trong suốt quá trình đấu giá.</p></div></div></div></div>
-    <div id="modal-stakeholder-organizer" class="modal"><div class="modal-header"><h3 class="modal-title">Chủ Thể Đấu Giá</h3><button data-close-button class="modal-close-btn" aria-label="Đóng">&times;</button></div><div class="modal-body"><div class="md:flex md:items-center md:gap-8"><div class="md:w-1/3 text-center mb-6 md:mb-0"><div class="inline-block p-6 bg-emerald-100 rounded-full"><span class="emoji-icon">🏢</span></div></div><div class="md:w-2/3"><h4 class="modal-feature-title">Người tổ chức đấu giá</h4><p class="text-gray-600">Là thương nhân có đăng ký kinh doanh dịch vụ đấu giá hoặc là người bán hàng hóa của mình trong trường hợp người bán hàng tự tổ chức đấu giá.</p></div></div></div></div>
+    
+    <div id="modal-stakeholder-organizer" class="modal"><div class="modal-header"><h3 class="modal-title">Chủ Thể Đấu Giá</h3><button data-close-button class="modal-close-btn" aria-label="Đóng">&times;</button></div><div class="modal-body"><div class="md:flex md:items-center md:gap-8"><div class="md:w-1/3 text-center mb-6 md:mb-0"><div class="inline-block p-6 bg-emerald-100 rounded-full"><span class="emoji-icon">🏢</span></div></div><div class="md:w-2/3"><h4 class="modal-feature-title">Người tổ chức đấu giá</h4><p>Người tổ chức đấu giá là thương nhân có đăng ký kinh doanh dịch vụ đấu giá hoặc là người bán hàng hóa của mình trong trường hợp người bán hàng tự tổ chức đấu giá. <br>Tuy nhiên, theo quy định của Luật Đấu giá tài sản thì để tổ chức đấu giá tài sản chỉ có thể tồn tại dưới hai hình thức: trung tâm dịch vụ đấu giá hoặc doanh nghiệp đấu giá.<br> - Trung tâm dịch vụ đấu giá tài sản là đơn vị sự nghiệp công lập thuộc Sở Tư pháp.<br> - Doanh nghiệp đấu giá tài sản được thành lập, tổ chức và hoạt động dưới hình thức doanh nghiệp tư nhân, công ty hợp danh.</p></div></div></div></div>
     <div id="modal-stakeholder-participant" class="modal"><div class="modal-header"><h3 class="modal-title">Chủ Thể Đấu Giá</h3><button data-close-button class="modal-close-btn" aria-label="Đóng">&times;</button></div><div class="modal-body"><div class="md:flex md:items-center md:gap-8"><div class="md:w-1/3 text-center mb-6 md:mb-0"><div class="inline-block p-6 bg-emerald-100 rounded-full"><span class="emoji-icon">👥</span></div></div><div class="md:w-2/3"><h4 class="modal-feature-title">Người tham gia đấu giá</h4><p class="text-gray-600">Là tổ chức, cá nhân đăng ký tham gia cuộc đấu giá, có nhu cầu sở hữu hàng hóa được mang ra đấu giá.</p></div></div></div></div>
-    <div id="modal-stakeholder-seller" class="modal"><div class="modal-header"><h3 class="modal-title">Chủ Thể Đấu Giá</h3><button data-close-button class="modal-close-btn" aria-label="Đóng">&times;</button></div><div class="modal-body"><div class="md:flex md:items-center md:gap-8"><div class="md:w-1/3 text-center mb-6 md:mb-0"><div class="inline-block p-6 bg-emerald-100 rounded-full"><span class="emoji-icon">🏷️</span></div></div><div class="md:w-2/3"><h4 class="modal-feature-title">Người bán hàng hóa</h4><p class="text-gray-600">Là chủ sở hữu hàng hóa, người được chủ sở hữu ủy quyền bán hoặc người có quyền bán hàng hóa của người khác theo quy định của pháp luật.</p></div></div></div></div>
+    <div id="modal-stakeholder-seller" class="modal"><div class="modal-header"><h3 class="modal-title">Chủ Thể Đấu Giá</h3><button data-close-button class="modal-close-btn" aria-label="Đóng">&times;</button></div><div class="modal-body"><div class="md:flex md:items-center md:gap-8"><div class="md:w-1/3 text-center mb-6 md:mb-0"><div class="inline-block p-6 bg-emerald-100 rounded-full"><span class="emoji-icon">🏷️</span></div></div><div class="md:w-2/3"><h4 class="modal-feature-title">Người bán hàng hóa</h4><p class="text-gray-600">Người bán hàng hóa là chủ sở hữu hàng hóa, người được chủ sở hữu hàng hóa ủy quyền bán hoặc người có quyền bán hàng hóa của người khác theo quy định của pháp luật.<br>Người bán hàng hóa có thể trực tiếp, tự mình tổ chức bán đấu giá cho hàng hóa của mình hoặc thuê tổ chức bán đấu giá chuyên nghiệp thực hiện việc đó.</p></div></div></div></div>
+    
     <div id="modal-procedure-1" class="modal"><div class="modal-header"><h3 class="modal-title">Quy trình đấu giá</h3><button data-close-button class="modal-close-btn" aria-label="Đóng">&times;</button></div><div class="modal-body"><div class="md:flex md:items-center md:gap-8"><div class="md:w-1/3 text-center mb-6 md:mb-0"><div class="inline-block p-6 bg-emerald-100 rounded-full"><span class="emoji-icon">📝</span></div></div><div class="md:w-2/3"><h4 class="modal-feature-title">Bước 1: Lập hợp đồng dịch vụ</h4><p>Đối với trường hợp người bán hàng hóa tự tổ chức bán đấu giá thì họ không phải làm thủ tục này. Nhưng trên thực tế, đa phần người bán hàng hóa lựa chọn cho mình một trung gian - thương nhân bán đấu giá chuyên nghiệp để tiến hành đấu giá, như vậy họ sẽ phải lập hợp đồng dịch vụ tổ chức đấu giá hàng hóa theo như quy định tại Điều 193, Luật Thương mại 2005.<br>Tổ chức bán đấu giá chỉ được quyền tiến hành bán đấu giá sau khi có sự ủy quyền của người bán hàng hóa bằng một hợp đồng có hiệu lực pháp luật.</p></div></div></div></div>
     <div id="modal-procedure-2" class="modal"><div class="modal-header"><h3 class="modal-title">Quy trình đấu giá</h3><button data-close-button class="modal-close-btn" aria-label="Đóng">&times;</button></div><div class="modal-body"><div class="md:flex md:items-center md:gap-8"><div class="md:w-1/3 text-center mb-6 md:mb-0"><div class="inline-block p-6 bg-emerald-100 rounded-full"><span class="emoji-icon">💲</span></div></div><div class="md:w-2/3"><h4 class="modal-feature-title">Bước 2: Xác định giá khởi điểm</h4><p>Giá khởi điểm là giá bán đầu thấp nhất của tài sản đấu giá trong trường hợp đấu giá theo phương thức trả giá lên; giá bán đầu cao nhất của tài sản đấu giá trong trường hợp đấu giá theo phương thức đặt giá xuống.<br>Người bán hàng phải xác định giá khởi điểm. Trong trường hợp người tổ chức đấu giá được ủy quyền xác định giá khởi điểm thì phải thông báo cho người bán hàng trước khi niêm yết việc bán đấu giá.</p></div></div></div></div>
     <div id="modal-procedure-3" class="modal"><div class="modal-header"><h3 class="modal-title">Quy trình đấu giá</h3><button data-close-button class="modal-close-btn" aria-label="Đóng">&times;</button></div><div class="modal-body"><div class="md:flex md:items-center md:gap-8"><div class="md:w-1/3 text-center mb-6 md:mb-0"><div class="inline-block p-6 bg-emerald-100 rounded-full"><span class="emoji-icon">📢</span></div></div><div class="md:w-2/3"><h4 class="modal-feature-title">Bước 3: Chuẩn bị bán đấu giá</h4><p>Người bán hàng hóa hoặc người tổ chức bán đấu giá phải tiến hành một số công việc chuẩn bị cần thiết như: niêm yết, thông báo công khai việc bán đấu giá; nhận hồ sơ đăng ký mua hàng hóa và đặt cọc; trưng bày hàng hóa.<br>Chậm nhất là 7 ngày làm việc trước khi bán đấu giá, phải niêm yết việc bán đấu giá tại nơi tổ chức, nơi trưng bày và nơi đặt trụ sở của người tổ chức đấu giá. Người mua phải đặt trước một khoản tiền để giữ chỗ.</p></div></div></div></div>
     <div id="modal-procedure-4" class="modal"><div class="modal-header"><h3 class="modal-title">Quy trình đấu giá</h3><button data-close-button class="modal-close-btn" aria-label="Đóng">&times;</button></div><div class="modal-body"><div class="md:flex md:items-center md:gap-8"><div class="md:w-1/3 text-center mb-6 md:mb-0"><div class="inline-block p-6 bg-emerald-100 rounded-full"><span class="emoji-icon">👥</span></div></div><div class="md:w-2/3"><h4 class="modal-feature-title">Bước 4: Tiến hành đấu giá</h4><p>Tại cuộc đấu giá, người điều hành bán đấu giá phải thực hiện 5 bước theo quy định tại Điều 201, Luật Thương mại 2005:<br>1. Điểm danh người đã đăng ký tham gia.<br>2. Giới thiệu hàng hóa, nhắc lại giá khởi điểm, trả lời câu hỏi và yêu cầu trả giá.<br>3. Xác định người trả giá hợp lệ để trở thành người mua.<br>4. Tổ chức rút thăm giữa những người trả mức giá cuối cùng (đối với trả giá lên) hoặc mức giá đầu tiên (đối với đặt giá xuống).<br>5. Lập văn bản bán đấu giá hàng hóa ngay tại cuộc đấu giá.</p></div></div></div></div>
     <div id="modal-procedure-5" class="modal"><div class="modal-header"><h3 class="modal-title">Quy trình đấu giá</h3><button data-close-button class="modal-close-btn" aria-label="Đóng">&times;</button></div><div class="modal-body"><div class="md:flex md:items-center md:gap-8"><div class="md:w-1/3 text-center mb-6 md:mb-0"><div class="inline-block p-6 bg-emerald-100 rounded-full"><span class="emoji-icon">✍️</span></div></div><div class="md:w-2/3"><h4 class="modal-feature-title">Bước 5: Hoàn thành văn bản đấu giá</h4><p>Văn bản bán đấu giá là căn cứ xác nhận việc mua bán và có giá trị như một hợp đồng mua bán hàng hóa.<br>Văn bản này được lập ngay tại cuộc bán đấu giá, kể cả trường hợp đấu giá không thành, và phải có đầy đủ nội dung theo Điều 203 LTM 2005.</p></div></div></div></div>
     <div id="modal-procedure-6" class="modal"><div class="modal-header"><h3 class="modal-title">Quy trình đấu giá</h3><button data-close-button class="modal-close-btn" aria-label="Đóng">&times;</button></div><div class="modal-body"><div class="md:flex md:items-center md:gap-8"><div class="md:w-1/3 text-center mb-6 md:mb-0"><div class="inline-block p-6 bg-emerald-100 rounded-full"><span class="emoji-icon">🔑</span></div></div><div class="md:w-2/3"><h4 class="modal-feature-title">Bước 6: Đăng ký quyền sở hữu</h4><p>Văn bản bán đấu giá được dùng làm căn cứ để chuyển quyền sở hữu đối với hàng hóa mà pháp luật quy định phải đăng ký.<br>Người bán và người tổ chức đấu giá có nghĩa vụ làm thủ tục chuyển quyền sở hữu cho người mua. Chi phí làm thủ tục được trừ vào tiền bán hàng hóa, trừ khi có thỏa thuận khác.</p></div></div></div></div>
+    
     <div id="modal-method-up" class="modal"><div class="modal-header"><h3 class="modal-title">Phương thức đấu giá</h3><button data-close-button class="modal-close-btn" aria-label="Đóng">&times;</button></div><div class="modal-body"><div class="md:flex md:items-center md:gap-8"><div class="md:w-1/3 text-center mb-6 md:mb-0"><div class="inline-block p-6 bg-emerald-100 rounded-full"><span class="emoji-icon">🔼</span></div></div><div class="md:w-2/3"><h4 class="modal-feature-title">Phương thức trả giá lên</h4><p>Khác với quy định tại Luật Đấu giá, Luật Thương mại 2005 ghi nhận hoạt động đấu giá hàng hóa được thực hiện theo một trong hai phương thức: phương thức trả giá lên hoặc phương thức đặt giá xuống.</p><p><strong>Phương thức trả giá lên:</strong> là phương thức bán đấu giá, theo đó người trả giá cao nhất so với giá khởi điểm là người có quyền mua hàng. Cụ thể, tại phiên đấu giá, từ giá khởi điểm của hàng hóa, người mua sẽ trả giá nâng dần lên theo từng bước giá, người trả giá cao nhất sẽ là người có quyền mua hàng hóa.</p></div></div></div></div>
     <div id="modal-method-down" class="modal"><div class="modal-header"><h3 class="modal-title">Phương thức đấu giá</h3><button data-close-button class="modal-close-btn" aria-label="Đóng">&times;</button></div><div class="modal-body"><div class="md:flex md:items-center md:gap-8"><div class="md:w-1/3 text-center mb-6 md:mb-0"><div class="inline-block p-6 bg-emerald-100 rounded-full"><span class="emoji-icon">🔽</span></div></div><div class="md:w-2/3"><h4 class="modal-feature-title">Phương thức đặt giá xuống</h4><p><strong>Phương thức đặt giá xuống:</strong> là phương thức bán đấu giá, theo đó người đầu tiên chấp nhận ngay mức giá khởi điểm hoặc mức giá được hạ thấp hơn mức giá khởi điểm là người có quyền mua hàng. Cụ thể, tại phiên đấu giá, người điều hành nêu giá khởi điểm cao nhất đối với hàng hóa sau đó hạ dần xuống từng mức giá để người tham gia đấu giá sẽ đặt giá. Nếu mức giá được nêu ra không có ai trả giá thì người điều hành tiếp tục đặt giá xuống. Hàng hóa đấu giá sẽ được bán cho người mua chấp nhận ngay giá khởi điểm hoặc ở một mức giá nhất định thấp hơn giá khởi điểm của hàng hóa.</p></div></div></div></div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                    }
-                });
-            }, { threshold: 0.1 });
-            document.querySelectorAll('.animate-on-scroll').forEach((el) => observer.observe(el));
+            // --- Animation on Scroll ---
+            try {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.05 });
 
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('.nav-links a');
+                document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+                    observer.observe(el);
+                });
+            } catch (e) {
+                console.error("Scroll animation setup failed.", e);
+                document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+                    el.classList.add('is-visible');
+                });
+            }
+
+            // --- Sticky Nav Logic ---
             const nav = document.querySelector('.sticky-nav');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            const sections = document.querySelectorAll('section[id]');
             let lastScrollY = window.scrollY;
+            let isClickScrolling = false;
+            let scrollTimeout;
 
-            const updateActiveLink = () => {
-                let current = '';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    if (pageYOffset >= sectionTop - nav.offsetHeight - 10) {
-                        current = section.getAttribute('id');
-                    }
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    isClickScrolling = true;
+                    nav.classList.remove('nav-hidden'); 
+                    clearTimeout(scrollTimeout);
+                    scrollTimeout = setTimeout(() => {
+                        isClickScrolling = false;
+                    }, 1000); 
                 });
-                navLinks.forEach(a => {
-                    a.classList.remove('active');
-                    if (a.getAttribute('href').substring(1) === current) {
-                        a.classList.add('active');
-                    }
-                });
-            };
+            });
+            
             const handleNavVisibility = () => {
-                 if (window.scrollY > lastScrollY && window.scrollY > 200) {
+                if (isClickScrolling) {
+                    lastScrollY = window.scrollY;
+                    return; 
+                }
+                if (window.scrollY > lastScrollY && window.scrollY > 200) {
                     nav.classList.add('nav-hidden');
                 } else {
                     nav.classList.remove('nav-hidden');
                 }
                 lastScrollY = window.scrollY;
             };
+            
+            const updateActiveLink = () => {
+                let currentSectionId = '';
+                sections.forEach(section => {
+                    if (window.pageYOffset >= section.offsetTop - nav.offsetHeight - 50) {
+                        currentSectionId = section.getAttribute('id');
+                    }
+                });
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === currentSectionId) {
+                        link.classList.add('active');
+                    }
+                });
+            };
+            
             window.addEventListener('scroll', () => {
                 updateActiveLink();
                 handleNavVisibility();
-            });
+            }, { passive: true });
 
+            // --- Modal Logic ---
             const openModalButtons = document.querySelectorAll('[data-modal-target]');
             const overlay = document.getElementById('modal-overlay');
 
@@ -831,12 +878,14 @@
                 overlay.classList.add('active');
                 document.body.style.overflow = 'hidden'; 
             }
+
             function closeModal(modal) {
                 if (modal == null) return;
                 modal.classList.remove('active');
                 overlay.classList.remove('active');
                 document.body.style.overflow = '';
             }
+
             openModalButtons.forEach(button => {
                 const openAssociatedModal = () => {
                     const modal = document.querySelector(button.dataset.modalTarget);
@@ -850,12 +899,14 @@
                     }
                 });
             });
+            
             document.addEventListener('click', (e) => {
                 if (e.target.matches('#modal-overlay') || e.target.closest('[data-close-button]')) {
                     const activeModal = document.querySelector('.modal.active');
                     closeModal(activeModal);
                 }
             });
+
             document.addEventListener('keydown', (e) => {
                 if (e.key === "Escape") {
                     const activeModal = document.querySelector('.modal.active');
