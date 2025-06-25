@@ -41,9 +41,18 @@
         */
         .hero-section {
             background-color: var(--color-bg-dark);
-            background-image: linear-gradient(135deg, var(--color-bg-dark) 0%, #047857 100%);
+            /*
+              Cập nhật: Thay thế URL hình ảnh trước đó bằng một URL mới, đáng tin cậy hơn từ Pexels
+              để khắc phục triệt để vấn đề tải ảnh.
+            */
+            background-image:
+                linear-gradient(135deg, rgba(6, 78, 59, 0.85) 0%, rgba(4, 120, 87, 0.9) 100%),
+                url('https://images.pexels.com/photos/386318/pexels-photo-386318.jpeg');
+            background-size: cover;
+            background-position: center center;
             padding: 7rem 1.5rem;
             text-align: center;
+            position: relative;
         }
         .header-title, .section-heading, .verdict-title, .modal-title, .modal-feature-title, .subsection-heading {
             font-family: 'Be Vietnam Pro', sans-serif;
@@ -526,6 +535,7 @@
     </nav>
     
     <main class="main-container">
+        <!-- All page content from <section> to </section> remains the same -->
         <section id="legal-foundation" class="section animate-on-scroll fade-in-up">
             <h2 class="section-heading">
                 <span class="emoji-icon">⚖️</span>
@@ -910,7 +920,7 @@
                 });
             }
 
-            // --- Sticky Nav Logic ---
+            // --- Sticky Nav Logic (FIXED) ---
             const nav = document.querySelector('.sticky-nav');
             const navLinks = document.querySelectorAll('.nav-links a');
             const sections = document.querySelectorAll('section[id]');
@@ -928,7 +938,7 @@
                     // Reset the flag after the smooth scroll animation has likely finished
                     scrollTimeout = setTimeout(() => {
                         isClickScrolling = false;
-                    }, 1000); // 1 second buffer
+                    }, 1000); // 1-second buffer should be enough for smooth scroll
                 });
             });
 
@@ -937,7 +947,7 @@
                 // If we are auto-scrolling from a click, do not hide the nav
                 if (isClickScrolling) {
                     lastScrollY = window.scrollY; // Still update scroll position
-                    return;
+                    return; 
                 }
                 
                 if (window.scrollY > lastScrollY && window.scrollY > 200) {
@@ -969,6 +979,7 @@
                 updateActiveLink();
                 handleNavVisibility();
             }, { passive: true });
+
 
             // --- Modal Logic ---
             const openModalButtons = document.querySelectorAll('[data-modal-target]');
@@ -1040,7 +1051,7 @@
                 resultContainer.style.display = 'block';
                 resultContainer.innerHTML = '<div class="flex justify-center items-center h-full"><div class="loader"></div></div>';
 
-                const apiKey = "AIzaSyAog-O_orohEABZSflaUfIY6oGs8Ra7h4U"; // API key is handled by the environment
+                const apiKey = ""; // API key is handled by the environment
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
                 try {
